@@ -1,0 +1,1219 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>PStore+ — Gestion stock occasion</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="PStore+">
+<meta name="theme-color" content="#0F5E5C">
+<link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAIAAACyr5FlAAAFB0lEQVR42u3dXUxbZRyA8X7QUuiw7RZrF5JtlQ9B2ZA4TOPUsAyMJMBM5pwXC06TqVF2MecCIZlLdDFzjkxFE+cNAltijCYLug+HQsdisqziHIUim1BaU1I6xlrAftAe9MIYhTRkHspYD8/vlr7l0P/D4S05HOS66p0yIB4FLwGIA8QB4gBxgDhAHCAOEAeIA8QBEAeIA8QB4gBxgDhAHCAOEAeIAyAOEAeIA8QB4gBxgDhAHCAOEAdAHCAOEAeIA8QB4gBxgDhAHCAOEAdAHCAOEAeIA8QB4gBxgDhAHCAOgDhAHFiAlIQ8y/o1ay++c2iRDjEqCJFoNBKNToRCowG/LxD4fWzs1xHPgMfT43aHp6eZ4l0dx6JSKZUqpXKFRrMqI8NsNP73Q9Ox2M/OoYv9/W02m93tYpzLLo55qFNSLDm5lpzc/VVbf/N6Wy5Ymzo7JkMh5sqeY5Zsk+ntHc87jn144NntWo2G0RLHXBlpafsqq7rfO7K1+FGmSxxxmPSG5po9H7z4kkalYsbEEceuks2nauvuSUtnzMQRhyUn93R9vS6dPogjnvVr1n7++p4UpZJhL6+3srdpc0HBgW3bD375xVIdwI7HNh1/5dV5HvDLsLPk4FucOZZGTXl5kdnMyYA44lAqFEerX2DexBHfI/dnlW0oZOTJsedw+nxF+/fN84D01FS9Vrtab9iYlfV4Xv7TRUWqhe0ra8rL23uuMnUpbEiDkUgwEhkZH+8eGjzeft6kN+ytqHi5tEwul4t7wifyHzTp9V6/n8FL7ceK13+r9kTrtqPvT4XDIr9aubxqYzFTl+yeo6PXXt34UUwQxC3flJfH1KW8Ie3otX96/jtxay25DzB1ib9bOXb622AkImLhfTqdXqtl8FKO4+bkZJfDIW7tunuNDF7KcchkMqujT9zCzFUrGbzE43DduCFuoVadyuAlHsfNyQlxC9NTiUPqcSjkIg/+T8Yu+ThWZqwQtzAk6m0OcSQT0W86piJhBi/xOEoeKhC30DM+zuClHIdRp3syP1/c2mGfj8FLOY43Kqs0arWIhV7/rUAwyOAlG8dThYW7t5SKW3vp2nWmLtk4yjYUNr1Wo1SIPPIfB/qZ+m1KpqvPVxsMeysqd28pFX2xjzAz02azMXUpxJGmVv99mWBxdnZCLhPscjhGAwGmngRxmI1Gf3PrnfyMH587w8il+WNlgbqHBn+w2//f7vXdw3mZmXfg2B5eZ07U98kzRw5b+/oS8lTL5U8ThJmZN1uaORkQRxyNZ89ccTqZN3HM1dnbe+jrrxg2ccxld7t2fdIo+mp1NqSSden6tecaGiZC/L6cOGZrtnbWnjzBjUqJYxav3193svXU5csMmDj+NRUOf/Z9e8M3bX+EuaKHOP4xOOptuWBt6uhkh0EcMplMFhWEK05nl6Ov7Sdbj4vbWy+/OGKCMB2LRWLRQDDoC0z4An732NjAyMiAx3PVNRxazP2mpb4uIc+TpPcEu6tv3oKlxf9bAXGAOEAcIA4QB4gDxAHiAHGAOADiAHGAOEAcIA4QB4gDxAHiAHEAxAHiwALIddU7eRXAmQPEAeIAcYA4QBwgDhAHiAPEARAHiAPEAeIAcYA4QBwgDhAHiAMgDhAHiAPEAeIAcYA4QBwgDhAHiAMgDhAHiAPEAeIAcYA4QBwgDhAHQBwgDhAHiAPEAeIAcYA4QBwgDoA4QBwgDiTcX8xdVGdCvQQ0AAAAAElFTkSuQmCC">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#131C26;
+  --ink-2:#4A5765;
+  --ink-3:#8592A0;
+  --paper:#E7EBEF;
+  --surface:#FFFFFF;
+  --line:#D9DFE5;
+  --teal:#0F5E5C;
+  --teal-soft:#E2F0EE;
+  --amber:#B4791A;
+  --amber-soft:#FBF0DC;
+  --clay:#A93826;
+  --clay-soft:#FAE7E3;
+  --violet:#4A3D8F;
+  --radius:14px;
+  --tap:48px;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0}
+body{
+  font-family:'Instrument Sans',system-ui,-apple-system,sans-serif;
+  background:#C9D1D8;
+  color:var(--ink);
+  font-size:16px;line-height:1.45;
+  display:flex;justify-content:center;align-items:flex-start;
+  min-height:100vh;
+}
+.mono{font-family:'DM Mono',ui-monospace,monospace;font-variant-ligatures:none}
+
+/* ---- device frame (desktop only) ---- */
+#frame{
+  width:100%;max-width:430px;height:100vh;height:100dvh;
+  background:var(--paper);
+  position:relative;display:flex;flex-direction:column;
+  overflow:hidden;
+}
+@media (min-width:900px){
+  body{padding:28px 0;align-items:center}
+  #frame{height:900px;min-height:0;border-radius:34px;box-shadow:0 30px 70px rgba(19,28,38,.28);border:1px solid #B7C0C9}
+}
+
+/* ---- header ---- */
+header{
+  background:var(--surface);border-bottom:1px solid var(--line);
+  padding:10px 14px 8px;display:flex;align-items:center;gap:10px;flex-shrink:0;
+}
+.logo{height:26px;width:auto;display:block}
+.logo-fallback{font-weight:700;letter-spacing:-.02em;font-size:19px}
+.logo-fallback b{color:var(--teal)}
+.hdr-right{margin-left:auto;display:flex;gap:6px;align-items:center}
+.chip{
+  border:1px solid var(--line);background:var(--surface);
+  border-radius:999px;padding:5px 10px;font-size:12.5px;font-weight:500;color:var(--ink-2);
+  display:inline-flex;align-items:center;gap:5px;cursor:pointer;
+}
+.chip .dot{width:6px;height:6px;border-radius:50%;background:var(--teal)}
+.chip.role{background:var(--ink);color:#fff;border-color:var(--ink)}
+
+/* ---- scroll area ---- */
+main{flex:1;overflow-y:auto;overflow-x:hidden;padding-bottom:96px;-webkit-overflow-scrolling:touch}
+.screen{display:none;animation:in .18s ease-out}
+.screen.on{display:block}
+@keyframes in{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+.pad{padding:0 14px}
+h1{font-size:23px;line-height:1.15;letter-spacing:-.02em;margin:18px 0 2px;font-weight:700}
+h2{font-size:15px;margin:22px 0 8px;font-weight:600;letter-spacing:-.01em}
+.sub{color:var(--ink-2);font-size:13.5px;margin:0 0 14px}
+
+/* ---- IMEI hero ---- */
+.hero{
+  margin:12px 14px 0;background:var(--teal);border-radius:var(--radius);
+  padding:14px;color:#fff;
+}
+.hero p{margin:0 0 10px;font-size:13.5px;color:#B9DAD7}
+.imei-bar{display:flex;gap:8px}
+.imei-bar input{
+  flex:1;min-width:0;height:var(--tap);border:0;border-radius:10px;padding:0 12px;
+  font-family:'DM Mono',monospace;font-size:15px;letter-spacing:.04em;color:var(--ink);
+}
+.imei-bar input::placeholder{color:#9AA6B2;letter-spacing:.04em}
+.imei-bar input:focus{outline:3px solid #7FC3BF;outline-offset:1px}
+.scan{
+  width:var(--tap);height:var(--tap);border-radius:10px;border:0;background:#0A4645;color:#fff;
+  display:grid;place-items:center;cursor:pointer;flex-shrink:0;
+}
+.scan svg{width:22px;height:22px}
+
+/* ---- stat strip ---- */
+.stats{display:flex;gap:1px;background:var(--line);border-radius:var(--radius);overflow:hidden;margin:14px 14px 0}
+.stat{flex:1;background:var(--surface);padding:11px 10px}
+.stat .v{font-size:19px;font-weight:700;letter-spacing:-.02em;display:block;line-height:1.2}
+.stat .l{font-size:11.5px;color:var(--ink-3);line-height:1.3;display:block;margin-top:2px}
+
+/* ---- action grid ---- */
+.actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 14px 0}
+.action{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+  padding:13px;text-align:left;cursor:pointer;font:inherit;color:inherit;
+  display:flex;flex-direction:column;gap:6px;min-height:84px;
+}
+.action:active{background:#F4F7F9}
+.action svg{width:21px;height:21px;stroke:var(--teal)}
+.action b{font-size:14.5px;font-weight:600}
+.action span{font-size:12px;color:var(--ink-3);line-height:1.3}
+
+/* ---- lists ---- */
+.list{background:var(--surface);border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-top:10px}
+.row{
+  display:flex;gap:11px;align-items:stretch;padding:11px 14px 11px 0;
+  border-bottom:1px solid #EDF1F4;cursor:pointer;position:relative;
+}
+.row:last-child{border-bottom:0}
+.row:active{background:#F4F7F9}
+.grade{width:4px;flex-shrink:0;border-radius:0 3px 3px 0}
+.g-A{background:var(--teal)}.g-B{background:var(--amber)}.g-C{background:var(--clay)}.g-N{background:var(--violet)}
+.row-body{flex:1;min-width:0}
+.row-title{font-size:15px;font-weight:600;letter-spacing:-.01em;display:flex;gap:6px;align-items:baseline}
+.row-meta{font-size:12.5px;color:var(--ink-2);margin-top:1px;display:flex;flex-wrap:wrap;gap:4px 9px}
+.row-imei{font-size:11.5px;color:var(--ink-3);letter-spacing:.03em;margin-top:3px}
+.row-right{text-align:right;flex-shrink:0;display:flex;flex-direction:column;justify-content:center;gap:4px}
+.price{font-weight:700;font-size:14.5px;white-space:nowrap}
+.price small{font-weight:500;font-size:11px;color:var(--ink-3)}
+
+.pill{display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:600;padding:2.5px 7px;border-radius:5px;white-space:nowrap}
+.p-stock{background:var(--teal-soft);color:var(--teal)}
+.p-test{background:#E8EAF6;color:var(--violet)}
+.p-resa{background:var(--amber-soft);color:var(--amber)}
+.p-vendu{background:#EDF1F4;color:var(--ink-2)}
+.p-alert{background:var(--clay-soft);color:var(--clay)}
+.p-sav{background:#FBF0DC;color:var(--amber)}
+
+/* ---- filters ---- */
+.filters{display:flex;gap:7px;overflow-x:auto;padding:12px 14px 4px;scrollbar-width:none}
+.filters::-webkit-scrollbar{display:none}
+.f{
+  border:1px solid var(--line);background:var(--surface);color:var(--ink-2);
+  border-radius:999px;padding:7px 13px;font-size:13px;font-weight:500;white-space:nowrap;cursor:pointer;font-family:inherit;
+}
+.f.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.search{
+  margin:12px 14px 0;display:flex;align-items:center;gap:9px;background:var(--surface);
+  border:1px solid var(--line);border-radius:10px;padding:0 12px;height:var(--tap);
+}
+.search input{flex:1;border:0;outline:0;font:inherit;font-size:15px;background:transparent;min-width:0}
+.search svg{width:18px;height:18px;stroke:var(--ink-3);flex-shrink:0}
+
+/* ---- alerts ---- */
+.alert{
+  display:flex;gap:10px;padding:11px 12px;border-radius:11px;margin:10px 14px 0;
+  font-size:13.5px;line-height:1.35;align-items:flex-start;
+}
+.alert.warn{background:var(--amber-soft);color:#6E4A0C}
+.alert.bad{background:var(--clay-soft);color:#7A2417}
+.alert.good{background:var(--teal-soft);color:#0A4645}
+.alert svg{width:18px;height:18px;flex-shrink:0;margin-top:1px}
+.alert b{display:block;font-weight:600}
+.alert a{color:inherit;font-weight:600;text-decoration:underline;cursor:pointer}
+
+/* ---- detail sheet ---- */
+.dback{
+  display:flex;align-items:center;gap:8px;background:transparent;border:0;font:inherit;
+  color:var(--ink-2);padding:14px;cursor:pointer;font-size:14px;font-weight:500;
+}
+.dback svg{width:16px;height:16px}
+.dhead{padding:0 14px 14px;border-bottom:1px solid var(--line);background:var(--surface)}
+.dhead h1{margin:0 0 4px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);margin:12px 14px 0;overflow:hidden}
+.card-h{padding:11px 14px;border-bottom:1px solid var(--line);font-size:13px;font-weight:600;color:var(--ink-2);display:flex;align-items:center;justify-content:space-between}
+.kv{display:flex;padding:9px 14px;font-size:14px;border-bottom:1px solid #F0F3F5;gap:12px}
+.kv:last-child{border-bottom:0}
+.kv dt{color:var(--ink-2);flex:0 0 42%;margin:0;font-size:13.5px}
+.kv dd{margin:0;flex:1;text-align:right;font-weight:500}
+.locked{color:var(--ink-3);font-style:italic;font-weight:400;font-size:13px}
+
+/* warranty ring */
+.warr{display:flex;align-items:center;gap:14px;padding:14px}
+.ring{position:relative;width:74px;height:74px;flex-shrink:0}
+.ring svg{transform:rotate(-90deg)}
+.ring-c{position:absolute;inset:0;display:grid;place-items:center;text-align:center;line-height:1}
+.ring-c b{font-size:20px;font-weight:700;display:block}
+.ring-c span{font-size:10.5px;color:var(--ink-3)}
+.warr-t{font-size:14px}
+.warr-t b{display:block;font-size:15px;margin-bottom:2px}
+.warr-t span{color:var(--ink-2);font-size:13px}
+
+/* timeline */
+.tl{padding:6px 14px 14px}
+.tl-i{display:flex;gap:12px;position:relative;padding-bottom:16px}
+.tl-i:last-child{padding-bottom:0}
+.tl-i::before{content:'';position:absolute;left:6px;top:16px;bottom:0;width:1.5px;background:var(--line)}
+.tl-i:last-child::before{display:none}
+.tl-d{width:13px;height:13px;border-radius:50%;border:3px solid var(--surface);background:var(--teal);flex-shrink:0;margin-top:3px;box-shadow:0 0 0 1.5px var(--teal)}
+.tl-i.pending .tl-d{background:var(--surface);box-shadow:0 0 0 1.5px var(--ink-3)}
+.tl-c{flex:1;font-size:13.5px}
+.tl-c b{display:block;font-size:14px;font-weight:600}
+.tl-c span{color:var(--ink-2);font-size:12.5px;display:block}
+.tl-c em{color:var(--ink-3);font-style:normal;font-size:12px}
+
+/* buttons */
+.btn{
+  display:flex;align-items:center;justify-content:center;gap:8px;width:100%;
+  height:var(--tap);border-radius:11px;border:0;font:inherit;font-size:15px;font-weight:600;
+  cursor:pointer;
+}
+.btn svg{width:18px;height:18px}
+.btn-p{background:var(--teal);color:#fff}
+.btn-p:active{background:#0A4645}
+.btn-s{background:var(--surface);color:var(--ink);border:1px solid var(--line)}
+.btn-d{background:var(--ink);color:#fff}
+.btn-row{display:flex;gap:10px;margin:14px}
+.btn-row .btn{flex:1}
+
+/* forms */
+.field{margin:0 14px 12px}
+.field label{display:block;font-size:13px;font-weight:600;margin-bottom:5px;color:var(--ink-2)}
+.field input,.field select,.field textarea{
+  width:100%;height:var(--tap);border:1px solid var(--line);border-radius:10px;
+  padding:0 12px;font:inherit;font-size:15.5px;background:var(--surface);color:var(--ink);
+}
+.field textarea{height:76px;padding:11px 12px;resize:none}
+.field input:focus,.field select:focus{outline:2px solid var(--teal);outline-offset:0;border-color:var(--teal)}
+.field .hint{font-size:12px;color:var(--ink-3);margin-top:4px}
+.seg{display:flex;gap:0;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--surface)}
+.seg button{
+  flex:1;height:46px;border:0;background:transparent;font:inherit;font-size:14.5px;font-weight:600;
+  color:var(--ink-2);cursor:pointer;border-right:1px solid var(--line);
+}
+.seg button:last-child{border-right:0}
+.seg button.on{background:var(--teal);color:#fff}
+.steps{display:flex;gap:5px;padding:12px 14px 0}
+.step{flex:1;height:3px;border-radius:2px;background:var(--line)}
+.step.on{background:var(--teal)}
+.check{
+  display:flex;align-items:center;gap:11px;padding:12px 14px;background:var(--surface);
+  border-bottom:1px solid #EDF1F4;cursor:pointer;font-size:14.5px;
+}
+.check:last-child{border-bottom:0}
+.box{width:23px;height:23px;border:2px solid var(--line);border-radius:6px;flex-shrink:0;display:grid;place-items:center}
+.check.ok .box{background:var(--teal);border-color:var(--teal)}
+.check.ok .box::after{content:'';width:6px;height:11px;border:solid #fff;border-width:0 2.5px 2.5px 0;transform:rotate(45deg) translate(-1px,-1px)}
+.check.ko .box{background:var(--clay);border-color:var(--clay)}
+.check.ko .box::after{content:'✕';color:#fff;font-size:13px;font-weight:700}
+.check small{margin-left:auto;color:var(--ink-3);font-size:12px}
+
+.photos{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;padding:0 14px}
+.photo{
+  aspect-ratio:1;border:1.5px dashed var(--line);border-radius:10px;display:grid;place-items:center;
+  background:var(--surface);color:var(--ink-3);font-size:10.5px;text-align:center;padding:4px;line-height:1.2;cursor:pointer;
+}
+.photo.filled{border-style:solid;border-color:var(--teal);background:var(--teal-soft);color:var(--teal);font-weight:600}
+.sig{
+  margin:0 14px;height:96px;border:1.5px dashed var(--line);border-radius:11px;background:var(--surface);
+  display:grid;place-items:center;color:var(--ink-3);font-size:13px;cursor:pointer;
+}
+.sig.done{border-style:solid;border-color:var(--teal);background:var(--teal-soft);color:var(--teal);font-family:'DM Mono',monospace}
+
+/* nav */
+nav{
+  position:absolute;bottom:0;left:0;right:0;background:var(--surface);border-top:1px solid var(--line);
+  display:flex;padding:6px 0 max(8px,env(safe-area-inset-bottom));
+}
+nav button{
+  flex:1;border:0;background:transparent;font:inherit;cursor:pointer;color:var(--ink-3);
+  display:flex;flex-direction:column;align-items:center;gap:3px;padding:6px 0;font-size:10.5px;font-weight:600;
+}
+nav button svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.8}
+nav button.on{color:var(--teal)}
+.fab{
+  position:absolute;bottom:78px;right:16px;width:56px;height:56px;border-radius:18px;border:0;
+  background:var(--ink);color:#fff;display:grid;place-items:center;cursor:pointer;
+  box-shadow:0 6px 18px rgba(19,28,38,.3);
+}
+.fab svg{width:26px;height:26px}
+
+/* sheet */
+.sheet-bg{position:absolute;inset:0;background:rgba(19,28,38,.5);display:none;z-index:20}
+.sheet-bg.on{display:block}
+.sheet{
+  position:absolute;left:0;right:0;bottom:0;background:var(--paper);border-radius:20px 20px 0 0;
+  padding:8px 0 max(16px,env(safe-area-inset-bottom));max-height:82%;overflow-y:auto;
+  animation:up .22s cubic-bezier(.2,.8,.3,1);
+}
+@keyframes up{from{transform:translateY(100%)}to{transform:none}}
+.handle{width:38px;height:4px;border-radius:2px;background:var(--line);margin:6px auto 12px}
+.sheet h3{margin:0 14px 10px;font-size:17px;font-weight:700;letter-spacing:-.01em}
+.opt{
+  display:flex;gap:11px;align-items:center;background:var(--surface);border:1px solid var(--line);
+  border-radius:12px;padding:13px;margin:0 14px 9px;cursor:pointer;font:inherit;text-align:left;width:calc(100% - 28px);
+}
+.opt b{display:block;font-size:15px;font-weight:600}
+.opt span{font-size:12.5px;color:var(--ink-3);line-height:1.3}
+.opt svg{width:22px;height:22px;stroke:var(--teal);flex-shrink:0}
+.opt.on{border-color:var(--teal);background:var(--teal-soft)}
+
+.scanview{
+  margin:0 14px 14px;aspect-ratio:4/3;background:#111A22;border-radius:14px;position:relative;overflow:hidden;
+  display:grid;place-items:center;
+}
+.scanview .box2{width:76%;height:34%;border:2px solid #7FC3BF;border-radius:8px;position:relative}
+.scanview .laser{position:absolute;left:0;right:0;height:2px;background:#7FC3BF;box-shadow:0 0 12px #7FC3BF;animation:sc 1.8s ease-in-out infinite}
+@keyframes sc{0%,100%{top:2px}50%{top:calc(100% - 4px)}}
+.scanview p{position:absolute;bottom:12px;color:#8FA3B0;font-size:12.5px;margin:0}
+
+.note{font-size:12px;color:var(--ink-3);padding:0 14px;margin:8px 0 0;line-height:1.4}
+.perm{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);margin:0 14px 12px;overflow:hidden}
+.perm-h{padding:11px 14px;background:#F4F7F9;border-bottom:1px solid var(--line);font-weight:600;font-size:14px;display:flex;justify-content:space-between;align-items:center}
+.perm-h span{font-size:12px;font-weight:500;color:var(--ink-3)}
+.perm-r{display:flex;padding:8px 14px;font-size:13.5px;border-bottom:1px solid #F0F3F5;gap:10px;align-items:center}
+.perm-r:last-child{border-bottom:0}
+.perm-r span{flex:1}
+.yes{color:var(--teal);font-weight:700}
+.no{color:var(--ink-3)}
+.toast{
+  position:absolute;left:14px;right:14px;bottom:88px;background:var(--ink);color:#fff;
+  padding:12px 14px;border-radius:12px;font-size:14px;z-index:30;display:none;align-items:center;gap:9px;
+}
+.toast.on{display:flex;animation:up .2s ease-out}
+.toast svg{width:18px;height:18px;flex-shrink:0}
+
+/* ---- multi-boutique ---- */
+.mark{border-radius:9px;display:grid;place-items:center;color:#fff;font-weight:700;letter-spacing:-.02em;flex-shrink:0}
+.auth{padding:0 20px;display:flex;flex-direction:column;min-height:100%}
+.auth-top{padding:40px 0 26px;text-align:center}
+.auth-top .mark{margin:0 auto 16px}
+.auth h1{font-size:25px;margin:0 0 6px}
+.auth .sub{font-size:14.5px;margin-bottom:22px}
+.pinrow{display:flex;gap:9px;justify-content:center;margin:6px 0 20px}
+.pindot{width:46px;height:54px;border:1.5px solid var(--line);border-radius:11px;background:var(--surface);display:grid;place-items:center;font-size:22px;font-weight:700}
+.pindot.on{border-color:var(--teal);background:var(--teal-soft);color:var(--teal)}
+.keys{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:auto;padding-bottom:18px}
+.keys button{height:54px;border:1px solid var(--line);background:var(--surface);border-radius:12px;font:inherit;font-size:21px;font-weight:600;cursor:pointer;color:var(--ink)}
+.keys button:active{background:var(--teal-soft)}
+.keys button.blank{border:0;background:transparent;cursor:default}
+.swatches{display:flex;gap:9px;flex-wrap:wrap}
+.sw{width:42px;height:42px;border-radius:11px;cursor:pointer;border:3px solid transparent}
+.sw.on{border-color:var(--ink)}
+.upload{display:flex;align-items:center;gap:13px;background:var(--surface);border:1.5px dashed var(--line);border-radius:12px;padding:13px;cursor:pointer}
+.upload.done{border-style:solid;border-color:var(--teal)}
+.upload div{flex:1}
+.upload b{display:block;font-size:14.5px}
+.upload span{font-size:12.5px;color:var(--ink-3)}
+.prev{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:11px 13px;display:flex;align-items:center;gap:10px}
+.prev .mark{width:34px;height:34px;font-size:14px}
+.prev b{font-size:16px;letter-spacing:-.02em}
+.p-essai{background:#E8EAF6;color:var(--violet)}
+.p-attente{background:var(--amber-soft);color:var(--amber)}
+.p-susp{background:var(--clay-soft);color:var(--clay)}
+.urow{display:flex;gap:11px;align-items:center;padding:12px 14px;border-bottom:1px solid #EDF1F4;cursor:pointer}
+.urow:last-child{border-bottom:0}
+.urow .av{width:38px;height:38px;border-radius:50%;background:var(--teal-soft);color:var(--teal);display:grid;place-items:center;font-weight:700;font-size:14px;flex-shrink:0}
+.urow .ub{flex:1;min-width:0}
+.urow .ub b{display:block;font-size:15px;font-weight:600}
+.urow .ub span{font-size:12.5px;color:var(--ink-2)}
+.srow{display:flex;gap:12px;align-items:center;padding:13px 14px;border-bottom:1px solid #EDF1F4;cursor:pointer}
+.srow:last-child{border-bottom:0}
+.srow .mark{width:42px;height:42px;font-size:15px}
+.srow .sb{flex:1;min-width:0}
+.srow .sb b{display:block;font-size:15.5px;font-weight:600;letter-spacing:-.01em}
+.srow .sb span{font-size:12.5px;color:var(--ink-2)}
+.perm-r b{width:24px;text-align:center}
+.perm-h span{letter-spacing:.04em}
+</style>
+</head>
+<body>
+<div id="frame">
+
+<header id="hdr"></header>
+
+<main id="main">
+
+<!-- ============ ACCUEIL ============ -->
+<section class="screen on" id="s-home">
+  <div class="hero">
+    <p>Cherche un appareil par IMEI, n° de série ou nom du client</p>
+    <div class="imei-bar">
+      <input class="mono" placeholder="35 301211 093284 7" inputmode="numeric" onfocus="go('stock')">
+      <button class="scan" onclick="openSheet('scan')" aria-label="Scanner l'IMEI">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 7V5a2 2 0 012-2h2M17 3h2a2 2 0 012 2v2M21 17v2a2 2 0 01-2 2h-2M7 21H5a2 2 0 01-2-2v-2M7 12h10"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="stats" id="homeStats"></div>
+  <div id="homeAlerts"></div>
+  <div class="actions" id="homeActions"></div>
+
+  <div class="pad"><h2 id="homeListTitle">Derniers mouvements</h2></div>
+  <div class="list" id="homeList"></div>
+  <p class="note">Maquette cliquable. Les données sont fictives.</p>
+</section>
+
+<!-- ============ STOCK ============ -->
+<section class="screen" id="s-stock">
+  <div class="pad"><h1>Stock</h1></div>
+  <div class="search">
+    <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+    <input id="stockSearch" placeholder="IMEI, modèle, client…" oninput="renderStock()">
+  </div>
+  <div class="filters" id="stockFilters"></div>
+  <div class="list" id="stockList"></div>
+  <p class="note" id="stockNote"></p>
+</section>
+
+<!-- ============ FICHE APPAREIL ============ -->
+<section class="screen" id="s-device">
+  <button class="dback" onclick="go(backTo)">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M15 5l-7 7 7 7"/></svg>Retour
+  </button>
+  <div id="deviceBody"></div>
+</section>
+
+<!-- ============ ACQUISITION ============ -->
+<section class="screen" id="s-acq">
+  <div class="steps"><div class="step on" id="ast1"></div><div class="step" id="ast2"></div><div class="step" id="ast3"></div></div>
+  <div id="acqBody"></div>
+</section>
+
+<!-- ============ VENTE ============ -->
+<section class="screen" id="s-sale">
+  <div class="steps"><div class="step on" id="vst1"></div><div class="step" id="vst2"></div></div>
+  <div id="saleBody"></div>
+</section>
+
+<!-- ============ GARANTIE / SAV ============ -->
+<section class="screen" id="s-warranty">
+  <div class="pad"><h1>Garantie & SAV</h1><p class="sub">Tape l'IMEI que le client te donne pour voir sa couverture immédiatement.</p></div>
+  <div class="search">
+    <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+    <input id="warSearch" class="mono" placeholder="IMEI ou n° de bon" oninput="renderWarranty()">
+  </div>
+  <div id="warBody"></div>
+</section>
+
+<!-- ============ RAPPORTS ============ -->
+<section class="screen" id="s-reports">
+  <div class="pad"><h1>Rapports</h1><p class="sub" id="repSub"></p></div>
+  <div id="repBody"></div>
+</section>
+
+<!-- ============ PLUS / RÔLES ============ -->
+<section class="screen" id="s-more">
+  <div class="pad"><h1>Réglages</h1></div>
+  <div id="shopBody"></div>
+  <div class="pad"><h2>Droits par rôle</h2></div>
+  <div id="permBody"></div>
+  <div class="card">
+    <div class="card-h">Boutiques</div>
+    <dl class="kv"><dt>L'Aouina</dt><dd>14 appareils</dd></dl>
+    <dl class="kv"><dt>Ennasser</dt><dd>9 appareils</dd></dl>
+    <dl class="kv"><dt>Transferts en attente</dt><dd>1</dd></dl>
+  </div>
+  <div class="card">
+    <div class="card-h">Garantie par défaut</div>
+    <dl class="kv"><dt>Occasion</dt><dd>3 mois</dd></dl>
+    <dl class="kv"><dt>Occasion premium</dt><dd>6 mois</dd></dl>
+    <dl class="kv"><dt>Neuf</dt><dd>12 mois</dd></dl>
+  </div>
+  <p class="note">Le vendeur peut proposer 6 mois seulement si le gérant l'autorise sur le modèle.</p>
+</section>
+
+<!-- ============ CONNEXION ============ -->
+<section class="screen" id="s-auth"><div id="authBody"></div></section>
+
+<!-- ============ CREATION DE BOUTIQUE ============ -->
+<section class="screen" id="s-onboard">
+  <div class="steps"><div class="step on" id="ob1"></div><div class="step" id="ob2"></div><div class="step" id="ob3"></div></div>
+  <div id="obBody"></div>
+</section>
+
+<!-- ============ EQUIPE ============ -->
+<section class="screen" id="s-team">
+  <button class="dback" onclick="go('more')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M15 5l-7 7 7 7"/></svg>Réglages</button>
+  <div id="teamBody"></div>
+</section>
+
+<!-- ============ CONSOLE EDITEUR ============ -->
+<section class="screen" id="s-admin"><div id="adminBody"></div></section>
+<section class="screen" id="s-shop">
+  <button class="dback" onclick="go('admin')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M15 5l-7 7 7 7"/></svg>Boutiques</button>
+  <div id="shopDetail"></div>
+</section>
+
+</main>
+
+<button class="fab" id="fab" onclick="openSheet('new')" aria-label="Nouvel enregistrement">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+</button>
+
+<nav id="nav"></nav>
+
+<div class="toast" id="toast"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg><span id="toastMsg"></span></div>
+
+<div class="sheet-bg" id="sheetBg" onclick="closeSheet()"><div class="sheet" id="sheet" onclick="event.stopPropagation()"></div></div>
+
+</div>
+
+<script>
+/* ---------------- données ---------------- */
+const DEV = [
+ {id:1, m:"iPhone 13 Pro", cap:"128 Go", col:"Bleu alpin", imei:"353012110932847", grade:"A", batt:89, achat:1750, repa:0, vente:2290, pdv:"L'Aouina", st:"stock", src:"Reprise particulier", who:"Mehdi Chaouch", cin:"09876543", din:"12/08/2026", age:22, war:6, neuf:false, icloud:"ok"},
+ {id:2, m:"iPhone 12", cap:"64 Go", col:"Noir", imei:"351209874556310", grade:"B", batt:81, achat:1180, repa:140, vente:1590, pdv:"L'Aouina", st:"stock", src:"Fournisseur Sfax Tech", who:"Sfax Tech", cin:"", din:"03/07/2026", age:62, war:3, neuf:false, icloud:"ok", note:"Écran changé (compatible)"},
+ {id:3, m:"Samsung Galaxy S22", cap:"128 Go", col:"Vert", imei:"356789012345671", grade:"B", batt:86, achat:1020, repa:0, vente:1450, pdv:"Ennasser", st:"stock", src:"Reprise particulier", who:"Ines Ben Salah", cin:"04412876", din:"27/08/2026", age:7, war:3, neuf:false, icloud:"ok"},
+ {id:4, m:"iPhone 14 Pro Max", cap:"256 Go", col:"Or", imei:"354477881122903", grade:"A", achat:2650, repa:0, vente:3390, batt:92, pdv:"L'Aouina", st:"vendu", src:"Fournisseur Import Plus", who:"Import Plus", din:"02/07/2026", dsale:"21/08/2026", client:"Karim Trabelsi", tel:"22 419 038", war:6, wleft:141, wtot:180, neuf:false, icloud:"ok"},
+ {id:5, m:"iPhone 11", cap:"128 Go", col:"Blanc", imei:"352998776655441", grade:"C", batt:74, achat:890, repa:0, vente:0, pdv:"L'Aouina", st:"bloque", src:"Reprise particulier", who:"Anonyme", cin:"—", din:"01/09/2026", age:2, war:3, neuf:false, icloud:"bloque"},
+ {id:6, m:"iPhone 15", cap:"128 Go", col:"Rose", imei:"357811224466991", grade:"A", batt:97, achat:2380, repa:0, vente:2990, pdv:"Ennasser", st:"reserve", src:"Fournisseur Import Plus", who:"Import Plus", din:"18/08/2026", age:16, war:6, neuf:false, icloud:"ok", client:"Sonia Gharbi", tel:"55 302 771", acompte:300},
+ {id:7, m:"iPhone 13", cap:"128 Go", col:"Minuit", imei:"353400229911884", grade:"B", batt:83, achat:1520, repa:0, vente:1990, pdv:"Ennasser", st:"stock", src:"Reprise particulier", who:"Walid Amri", cin:"07223190", din:"21/06/2026", age:74, war:3, neuf:false, icloud:"ok"},
+ {id:8, m:"Xiaomi Redmi Note 13 Pro", cap:"256 Go", col:"Noir", imei:"869911003344557", grade:"A", batt:95, achat:640, repa:0, vente:890, pdv:"L'Aouina", st:"test", src:"Reprise particulier", who:"Hatem Jlassi", cin:"11902334", din:"02/09/2026", age:1, war:3, neuf:false, icloud:"ok"},
+ {id:9, m:"iPhone 12 Pro", cap:"256 Go", col:"Graphite", imei:"351776554433220", grade:"B", batt:79, achat:1400, repa:0, vente:1890, pdv:"L'Aouina", st:"sav", src:"Fournisseur Sfax Tech", who:"Sfax Tech", din:"14/05/2026", dsale:"09/08/2026", client:"Rami Ben Aissa", tel:"98 114 662", war:3, wleft:65, wtot:90, neuf:false, icloud:"ok", sav:"Micro HS — retour le 01/09"}
+];
+
+const ST = {
+  stock:{l:"En stock",c:"p-stock"}, test:{l:"À tester",c:"p-test"}, reserve:{l:"Réservé",c:"p-resa"},
+  vendu:{l:"Vendu",c:"p-vendu"}, bloque:{l:"iCloud bloqué",c:"p-alert"}, sav:{l:"En SAV",c:"p-sav"}
+};
+
+const ROLES = {
+  vendeur:{name:"Vendeur", cost:false, margin:false, validate:false, transfer:false, team:false, billing:false,
+    desc:"Vend, encaisse, vérifie une garantie. Ne voit aucun coût.",
+    tabs:["home","stock","warranty","more"]},
+  stock:{name:"Responsable stock", cost:true, margin:false, validate:true, transfer:true, team:false, billing:false,
+    desc:"Saisit les entrées, teste, transfère entre boutiques. Voit les coûts.",
+    tabs:["home","stock","warranty","more"]},
+  gerant:{name:"Gérant", cost:true, margin:true, validate:true, transfer:true, team:true, billing:false,
+    desc:"Voit tout : marges, chiffre d’affaires, valeur du stock. Invite l’équipe.",
+    tabs:["home","stock","reports","more"]},
+  proprio:{name:"Propriétaire", cost:true, margin:true, validate:true, transfer:true, team:true, billing:true,
+    desc:"Tout le gérant, plus la marque de la boutique et l’abonnement.",
+    tabs:["home","stock","reports","more"]}
+};
+
+let role="vendeur", pdv="L'Aouina", cur=null, backTo="home", filter="all", acqStep=1, saleStep=1, saleDev=null;
+let acqData={imei:"", src:"particulier", checks:{ecran:1,tactile:1,faceid:1,cam:1,charge:1,son:0}, photos:[1,1,0,0], sig:false};
+
+const R=()=>ROLES[role];
+function dtn(n){
+  const p=(Math.round(n*1000)/1000).toFixed(3).split(".");
+  return p[0].replace(/\B(?=(\d{3})+(?!\d))/g,".")+","+p[1];
+}
+const dt=n=>dtn(n)+" DT";
+const $=id=>document.getElementById(id);
+
+/* ---------------- navigation ---------------- */
+const NAVICONS={
+ home:'<path d="M4 11l8-7 8 7v8a2 2 0 01-2 2h-3v-6H9v6H6a2 2 0 01-2-2z"/>',
+ stock:'<rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M9 4v16"/>',
+ warranty:'<path d="M12 3l7 3v6c0 4.4-3 7.6-7 9-4-1.4-7-4.6-7-9V6z"/><path d="M9.5 12l2 2 3.5-4"/>',
+ reports:'<path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/>',
+ more:'<circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.6 1.6 0 00.3 1.8l.1.1a2 2 0 11-2.8 2.8l-.1-.1a1.6 1.6 0 00-2.7 1.1V21a2 2 0 11-4 0v-.1A1.6 1.6 0 007.5 19l-.1.1a2 2 0 11-2.8-2.8l.1-.1a1.6 1.6 0 00-1.1-2.7H3a2 2 0 110-4h.1A1.6 1.6 0 004.6 7.5l-.1-.1a2 2 0 112.8-2.8l.1.1a1.6 1.6 0 001.8.3H9a1.6 1.6 0 001-1.5V3a2 2 0 114 0v.1a1.6 1.6 0 001 1.5 1.6 1.6 0 001.8-.3l.1-.1a2 2 0 112.8 2.8l-.1.1a1.6 1.6 0 00-.3 1.8V9a1.6 1.6 0 001.5 1H21a2 2 0 110 4h-.1a1.6 1.6 0 00-1.5 1z"/>'
+};
+const NAVLABEL={home:"Accueil",stock:"Stock",warranty:"Garantie",reports:"Rapports",more:"Réglages"};
+
+function renderNav(){
+  const n=$("nav");
+  if(MODE!=='app'){n.style.display='none';return;}
+  n.style.display='flex';
+  n.innerHTML = R().tabs.map(t=>
+    `<button class="${cur===t?'on':''}" onclick="go('${t}')">
+      <svg viewBox="0 0 24 24">${NAVICONS[t]}</svg>${NAVLABEL[t]}</button>`).join("");
+}
+function go(s){
+  cur=s;
+  MODE = ['auth','onboard'].includes(s) ? 'auth' : (['admin','shop'].includes(s) ? 'admin' : 'app');
+  document.querySelectorAll('.screen').forEach(e=>e.classList.remove('on'));
+  $('s-'+s).classList.add('on');
+  $('main').scrollTop=0;
+  $('fab').style.display = ['home','stock'].includes(s) ? 'grid':'none';
+  if(s==='home')renderHome();
+  if(s==='stock')renderStock();
+  if(s==='warranty')renderWarranty();
+  if(s==='reports')renderReports();
+  if(s==='more')renderMore();
+  if(s==='acq')renderAcq();
+  if(s==='sale')renderSale();
+  if(s==='auth')renderAuth();
+  if(s==='onboard')renderOnboard();
+  if(s==='team')renderTeam();
+  if(s==='admin')renderAdmin();
+  renderHeader();
+  renderNav();
+  closeSheet();
+}
+function toast(m){$('toastMsg').textContent=m;$('toast').classList.add('on');setTimeout(()=>$('toast').classList.remove('on'),2400);}
+
+/* ---------------- sheets ---------------- */
+function openSheet(k){
+  let h="";
+  if(k==='role'){
+    h=`<h3>Se connecter comme…</h3><p class="note" style="margin:-4px 0 12px">Démo : change de rôle pour voir ce que chacun a le droit de faire.</p>`+
+    Object.keys(ROLES).map(r=>`<button class="opt ${role===r?'on':''}" onclick="setRole('${r}')">
+      <div><b>${ROLES[r].name}</b><span>${ROLES[r].desc}</span></div></button>`).join("");
+  }
+  if(k==='pdv'){
+    h=`<h3>Point de vente</h3>`+TEN.pdvs.map((p,i)=>`<button class="opt ${pdv===p?'on':''}" onclick="setPdv(&quot;${p}&quot;)"><div><b>${p}</b><span>${[14,9,6,4][i]||0} appareils en stock</span></div></button>`).join("")
+    +`<p class="note">Chaque entrée de stock et chaque vente reste rattachée au point de vente où elle a eu lieu.</p>`;
+  }
+  if(k==='pay'){h=openPaySheet();}
+  if(k==='demo'){
+    h=`<h3>Naviguer dans la démo</h3><p class="note" style="margin:-4px 0 12px">Trois univers différents dans la même maquette.</p>
+    <button class="opt" onclick="closeSheet();go('auth')"><div><b>Écran de connexion</b><span>Numéro + code à 4 chiffres</span></div></button>
+    <button class="opt" onclick="startOnboard()"><div><b>Créer une boutique</b><span>Inscription en 3 étapes, logo et couleur compris</span></div></button>
+    <button class="opt" onclick="closeSheet();go('admin')"><div><b>Console éditeur</b><span>Ton côté à toi : valider et suivre les boutiques</span></div></button>
+    <button class="opt" onclick="resetTenant()"><div><b>Revenir à PStore +</b><span>La boutique de démonstration</span></div></button>`;
+  }
+  if(k==='new'){
+    h=`<h3>Nouvel enregistrement</h3>
+    <button class="opt" onclick="startAcq()"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg><div><b>Entrée de stock</b><span>Achat fournisseur ou reprise à un particulier</span></div></button>
+    <button class="opt" onclick="startSale()"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M6 2l1.5 5h13L19 16H8L6 2zM9 21h.01M18 21h.01"/></svg><div><b>Vente</b><span>Avec ou sans reprise en échange</span></div></button>
+    <button class="opt" onclick="closeSheet();go('warranty')"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M12 3l7 3v6c0 4.4-3 7.6-7 9-4-1.4-7-4.6-7-9V6z"/></svg><div><b>Retour SAV</b><span>Appareil qui revient sous garantie</span></div></button>
+    ${R().transfer?`<button class="opt" onclick="closeSheet();toast('Transfert créé — à confirmer à Ennasser')"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M4 8h13l-3-3M20 16H7l3 3"/></svg><div><b>Transfert entre boutiques</b><span>L'Aouina → Ennasser, confirmé à réception</span></div></button>`:''}`;
+  }
+  if(k==='scan'){
+    h=`<h3>Scanner l'IMEI</h3>
+    <div class="scanview"><div class="box2"><div class="laser"></div></div><p>Vise le code-barres sur la boîte, ou tape *#06# sur l'appareil</p></div>
+    <div class="btn-row" style="margin-top:0"><button class="btn btn-s" onclick="closeSheet()">Annuler</button><button class="btn btn-p" onclick="scanned()">Simuler une lecture</button></div>`;
+  }
+  $('sheet').innerHTML=h;$('sheetBg').classList.add('on');
+}
+function closeSheet(){$('sheetBg').classList.remove('on')}
+function setRole(r){role=r;closeSheet();go(R().tabs[0]);}
+function setPdv(p){pdv=p;closeSheet();go(cur==='device'?'stock':(cur||'home'));}
+function scanned(){closeSheet();acqData.imei="353012110932847";if(cur==='acq'){renderAcq();toast("IMEI lu — modèle reconnu");}else{openDevice(1);}}
+
+/* ---------------- accueil ---------------- */
+function renderHome(){
+  const inStock=DEV.filter(d=>d.st==='stock'||d.st==='reserve');
+  const val=inStock.reduce((s,d)=>s+d.achat+d.repa,0);
+  let stats;
+  if(role==='vendeur') stats=[["23","En stock"],["4","Vendus aujourd'hui"],["2","Réservés"]];
+  else if(role==='stock') stats=[["23","En stock"],["3","À tester"],["1","Transfert en attente"]];
+  else stats=[[dtn(val).replace(",000",""),"Valeur du stock (DT)"],["18.400","CA du mois (DT)"],["31 %","Marge moyenne"]];
+  $('homeStats').innerHTML=stats.map(s=>`<div class="stat"><span class="v">${s[0]}</span><span class="l">${s[1]}</span></div>`).join("");
+
+  let al="";
+  if(role!=='gerant') al+=`<div class="alert bad"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 8v5M12 17h.01M10.3 3.9L2.4 18a2 2 0 001.7 3h15.8a2 2 0 001.7-3L13.7 3.9a2 2 0 00-3.4 0z"/></svg><div><b>iPhone 11 blanc — iCloud verrouillé</b>Ne pas payer le vendeur. <a onclick="openDevice(5)">Voir la fiche</a></div></div>`;
+  if(role==='stock') al+=`<div class="alert warn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><div><b>3 appareils attendent leur test</b>Entrés hier et aujourd'hui, pas encore mis en vente.</div></div>`;
+  if(role==='gerant') al+=`<div class="alert warn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><div><b>2 appareils dormants depuis plus de 60 jours</b>3.170 DT immobilisés. <a onclick="filter='dormant';go('stock')">Les voir</a></div></div>`;
+  if(role==='vendeur') al+=`<div class="alert good"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg><div><b>Sonia Gharbi passe aujourd'hui</b>iPhone 15 rose réservé, acompte 300 DT versé.</div></div>`;
+  $('homeAlerts').innerHTML=al;
+
+  const A=(fn,ic,t,s)=>`<button class="action" onclick="${fn}"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round">${ic}</svg><b>${t}</b><span>${s}</span></button>`;
+  const cart='<path d="M6 2l1.5 5h13L19 16H8L6 2zM9 21h.01M18 21h.01"/>', plus='<path d="M12 5v14M5 12h14"/>',
+        shield='<path d="M12 3l7 3v6c0 4.4-3 7.6-7 9-4-1.4-7-4.6-7-9V6z"/>', swap='<path d="M4 8h13l-3-3M20 16H7l3 3"/>',
+        list='<path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/>', chart='<path d="M4 20V10M10 20V4M16 20v-7"/>';
+  let acts;
+  if(role==='vendeur') acts=A("startSale()",cart,"Vendre","Encaisser et éditer le bon de garantie")+A("startAcq()",plus,"Reprise client","CIN + signature obligatoires")+A("go('warranty')",shield,"Vérifier une garantie","Par IMEI, en 2 secondes")+A("go('stock')",list,"Voir le stock","Filtrer par modèle et par prix");
+  else if(role==='stock') acts=A("startAcq()",plus,"Entrée de stock","Fournisseur ou reprise")+A("go('stock')",list,"À tester (3)","Checklist et photos")+A("toast('Transfert créé')",swap,"Transférer","Vers Ennasser")+A("go('warranty')",shield,"Retour SAV","Rattacher à un IMEI");
+  else acts=A("go('reports')",chart,"Marges du mois","Par modèle et par boutique")+A("go('stock')",list,"Stock dormant","2 appareils > 60 jours")+A("go('warranty')",shield,"SAV en cours","1 appareil chez le réparateur")+A("go('more')",'<circle cx="12" cy="12" r="3"/>',"Droits d'accès","Qui peut faire quoi");
+  $('homeActions').innerHTML=acts;
+
+  $('homeListTitle').textContent = role==='stock' ? "Entrées récentes" : "Derniers mouvements";
+  const src = role==='stock' ? DEV.filter(d=>['test','stock','bloque'].includes(d.st)).slice(0,5) : DEV.slice(0,5);
+  $('homeList').innerHTML = src.map(rowHTML).join("");
+}
+
+/* ---------------- lignes ---------------- */
+function rowHTML(d){
+  const gc = d.neuf ? 'g-N':'g-'+d.grade;
+  const right = R().margin && d.vente
+     ? `<span class="price">${dt(d.vente)}</span><span class="price" style="font-weight:600;color:var(--teal);font-size:12.5px">+${dt(d.vente-d.achat-d.repa).replace(' DT','')}</span>`
+     : d.vente ? `<span class="price">${dt(d.vente)}</span>${R().cost?`<span class="price" style="font-weight:500;color:var(--ink-3);font-size:12px">achat ${d.achat}</span>`:''}`
+     : `<span class="price" style="color:var(--ink-3);font-size:12.5px">—</span>`;
+  return `<div class="row" onclick="openDevice(${d.id})">
+    <div class="grade ${gc}"></div>
+    <div class="row-body">
+      <div class="row-title">${d.m} <span style="font-weight:500;color:var(--ink-2);font-size:13px">${d.cap} · ${d.col}</span></div>
+      <div class="row-meta">
+        <span class="pill ${ST[d.st].c}">${ST[d.st].l}</span>
+        <span>Grade ${d.grade}</span><span>Batterie ${d.batt} %</span><span>${d.pdv}</span>
+      </div>
+      <div class="row-imei mono">${d.imei}</div>
+    </div>
+    <div class="row-right">${right}</div>
+  </div>`;
+}
+
+/* ---------------- stock ---------------- */
+const FILTERS=[["all","Tous"],["stock","En stock"],["test","À tester"],["reserve","Réservés"],["dormant","Dormants"],["vendu","Vendus"]];
+function renderStock(){
+  $('stockFilters').innerHTML=FILTERS.map(f=>`<button class="f ${filter===f[0]?'on':''}" onclick="filter='${f[0]}';renderStock()">${f[1]}</button>`).join("");
+  const q=($('stockSearch').value||"").toLowerCase();
+  let list=DEV.filter(d=>{
+    if(filter==='dormant') return d.age>60 && d.st==='stock';
+    if(filter!=='all' && d.st!==filter) return false;
+    return true;
+  }).filter(d=>!q || (d.m+d.imei+d.col+(d.client||"")).toLowerCase().includes(q));
+  $('stockList').innerHTML = list.length ? list.map(rowHTML).join("")
+    : `<div style="padding:34px 20px;text-align:center;color:var(--ink-3);font-size:14px">Aucun appareil ne correspond.<br>Change de filtre ou scanne l'IMEI.</div>`;
+  const v=list.filter(d=>d.st!=='vendu').reduce((s,d)=>s+d.achat+d.repa,0);
+  $('stockNote').textContent = R().cost ? `${list.length} appareil(s) · ${dt(v)} immobilisés` : `${list.length} appareil(s)`;
+}
+
+/* ---------------- fiche appareil ---------------- */
+function openDevice(id){
+  backTo = ['stock','home','warranty'].includes(cur)?cur:'stock'; cur='device';
+  const d=DEV.find(x=>x.id===id);
+  const marge=d.vente-d.achat-d.repa;
+  let h=`<div class="dhead">
+    <h1>${d.m} ${d.cap}</h1>
+    <p class="sub" style="margin:0 0 8px">${d.col} · Grade ${d.grade} · Batterie ${d.batt} %</p>
+    <span class="pill ${ST[d.st].c}">${ST[d.st].l}</span>
+    <span class="pill p-vendu">${d.pdv}</span>
+    ${d.age>60&&d.st==='stock'?`<span class="pill p-resa">${d.age} jours en stock</span>`:''}
+  </div>`;
+
+  if(d.icloud==='bloque') h+=`<div class="alert bad" style="margin-top:12px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 8v5M12 17h.01M10.3 3.9L2.4 18a2 2 0 001.7 3h15.8a2 2 0 001.7-3L13.7 3.9a2 2 0 00-3.4 0z"/></svg><div><b>Compte iCloud toujours actif</b>Appareil non revendable. Ne pas régler le vendeur tant que le compte n'est pas retiré.</div></div>`;
+  if(d.sav) h+=`<div class="alert warn" style="margin-top:12px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 8v5M12 17h.01M10.3 3.9L2.4 18a2 2 0 001.7 3h15.8a2 2 0 001.7-3L13.7 3.9a2 2 0 00-3.4 0z"/></svg><div><b>Retour SAV en cours</b>${d.sav}</div></div>`;
+
+  h+=`<div class="card">
+    <div class="card-h">Identité</div>
+    <dl class="kv"><dt>IMEI 1</dt><dd class="mono">${d.imei}</dd></dl>
+    <dl class="kv"><dt>IMEI 2 / eSIM</dt><dd class="mono">${d.imei.slice(0,13)}${(+d.imei.slice(13)+7).toString().padStart(2,'0')}</dd></dl>
+    <dl class="kv"><dt>N° de série</dt><dd class="mono">F2LX${d.id}9QK${d.imei.slice(-4)}</dd></dl>
+    <dl class="kv"><dt>Couleur</dt><dd>${d.col}</dd></dl>
+  </div>`;
+
+  h+=`<div class="card"><div class="card-h">Provenance</div>
+    <dl class="kv"><dt>Source</dt><dd>${d.src}</dd></dl>
+    <dl class="kv"><dt>${d.cin?'Vendeur':'Fournisseur'}</dt><dd>${d.who}</dd></dl>
+    ${d.cin?`<dl class="kv"><dt>CIN</dt><dd class="mono">${d.cin}</dd></dl>
+    <dl class="kv"><dt>Attestation de cession</dt><dd style="color:var(--teal);font-weight:600">Signée le ${d.din}</dd></dl>`:''}
+    <dl class="kv"><dt>Date d'entrée</dt><dd>${d.din}</dd></dl>
+  </div>`;
+
+  h+=`<div class="card"><div class="card-h">Prix</div>
+    ${R().cost?`<dl class="kv"><dt>Prix d'achat</dt><dd>${dt(d.achat)}</dd></dl>
+      <dl class="kv"><dt>Réparations</dt><dd>${d.repa?dt(d.repa):'—'}${d.note?`<div style="font-weight:400;font-size:12px;color:var(--ink-3)">${d.note}</div>`:''}</dd></dl>`
+     :`<dl class="kv"><dt>Prix d'achat</dt><dd class="locked">Réservé au gérant</dd></dl>`}
+    <dl class="kv"><dt>Prix de vente</dt><dd>${d.vente?dt(d.vente):'à définir'}</dd></dl>
+    ${R().margin&&d.vente?`<dl class="kv"><dt>Marge</dt><dd style="color:var(--teal)">${dt(marge)} · ${Math.round(marge/d.vente*100)} %</dd></dl>`:''}
+    ${d.acompte?`<dl class="kv"><dt>Acompte reçu</dt><dd>${dt(d.acompte)} — ${d.client}</dd></dl>`:''}
+  </div>`;
+
+  if(d.wleft!==undefined){
+    const pct=d.wleft/d.wtot;
+    const circ=2*Math.PI*32;
+    h+=`<div class="card"><div class="card-h">Garantie ${d.war} mois</div>
+      <div class="warr">
+        <div class="ring"><svg width="74" height="74"><circle cx="37" cy="37" r="32" stroke="#E7EBEF" stroke-width="7" fill="none"/>
+        <circle cx="37" cy="37" r="32" stroke="${pct>.3?'#0F5E5C':'#B4791A'}" stroke-width="7" fill="none" stroke-linecap="round" stroke-dasharray="${circ}" stroke-dashoffset="${circ*(1-pct)}"/></svg>
+        <div class="ring-c"><b>${d.wleft}</b><span>jours</span></div></div>
+        <div class="warr-t"><b>Sous garantie</b><span>Vendu le ${d.dsale} à ${d.client}<br>Expire le 17/02/2027</span></div>
+      </div>
+      <div style="padding:0 14px 14px"><button class="btn btn-s" onclick="toast('Bon de garantie envoyé sur WhatsApp')">Renvoyer le bon au client</button></div>
+    </div>`;
+  }
+
+  h+=`<div class="card"><div class="card-h">Historique</div><div class="tl">
+    ${tl(true,"Entrée en stock",`${d.src} · ${d.who}`,`${d.din} · ${d.pdv} · saisi par Amine`)}
+    ${tl(d.st!=='test',"Test et contrôle","12 points vérifiés, iCloud "+(d.icloud==='ok'?'libre':'verrouillé'),d.st==='test'?'En attente':d.din+' · Nizar')}
+    ${d.repa?tl(true,"Réparation",d.note,"Coût "+dt(d.repa)):''}
+    ${tl(['vendu','sav'].includes(d.st),"Vente",d.client?`${d.client} · ${d.tel}`:"Pas encore vendu",d.dsale?d.dsale+" · espèces":"—")}
+    ${d.sav?tl(true,"Retour SAV",d.sav,"En cours chez le technicien"):''}
+  </div></div>`;
+
+  if(d.st==='stock') h+=`<div class="btn-row"><button class="btn btn-s" onclick="toast('Réservation enregistrée')">Réserver</button><button class="btn btn-p" onclick="saleDev=${d.id};startSale()">Vendre</button></div>`;
+  else if(d.st==='test') h+=`<div class="btn-row"><button class="btn btn-p" onclick="toast('Appareil mis en vente')">Terminer le test</button></div>`;
+  else if(d.st==='reserve') h+=`<div class="btn-row"><button class="btn btn-s" onclick="toast('Réservation annulée')">Annuler</button><button class="btn btn-p" onclick="saleDev=${d.id};startSale()">Finaliser la vente</button></div>`;
+  else if(d.st==='bloque') h+=`<div class="btn-row"><button class="btn btn-s" onclick="toast('Vendeur relancé par SMS')">Relancer le vendeur</button><button class="btn btn-d" onclick="toast('Appareil sorti du stock')">Rendre l'appareil</button></div>`;
+  h+=`<p class="note">Chaque ligne d'historique garde l'auteur, l'heure et la boutique. Rien ne s'efface.</p>`;
+
+  $('deviceBody').innerHTML=h;
+  document.querySelectorAll('.screen').forEach(e=>e.classList.remove('on'));
+  $('s-device').classList.add('on');$('main').scrollTop=0;$('fab').style.display='none';renderNav();
+}
+const tl=(done,t,s,e)=>`<div class="tl-i ${done?'':'pending'}"><div class="tl-d"></div><div class="tl-c"><b>${t}</b><span>${s}</span><em>${e}</em></div></div>`;
+
+/* ---------------- acquisition ---------------- */
+function startAcq(){closeSheet();acqStep=1;go('acq');}
+function renderAcq(){
+  [1,2,3].forEach(i=>$('ast'+i).classList.toggle('on',i<=acqStep));
+  let h="";
+  if(acqStep===1){
+    h=`<div class="pad"><h1>Quel appareil ?</h1><p class="sub">Étape 1 sur 3 — identification</p></div>
+    <div class="field"><label>IMEI</label>
+      <div style="display:flex;gap:8px">
+        <input class="mono" value="${acqData.imei}" placeholder="15 chiffres" inputmode="numeric" oninput="acqData.imei=this.value">
+        <button class="scan" style="background:var(--ink)" onclick="openSheet('scan')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 7V5a2 2 0 012-2h2M17 3h2a2 2 0 012 2v2M21 17v2a2 2 0 01-2 2h-2M7 21H5a2 2 0 01-2-2v-2M7 12h10"/></svg></button>
+      </div>
+      <p class="hint">Scanne le code-barres de la boîte, ou compose *#06# sur l'appareil.</p></div>
+    ${acqData.imei?`<div class="alert good"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg><div><b>Apple iPhone 13 Pro — 128 Go</b>Modèle reconnu à partir de l'IMEI. Vérifie la couleur.</div></div>`:''}
+    <div class="field" style="margin-top:12px"><label>Modèle</label><input value="${acqData.imei?'iPhone 13 Pro':''}" placeholder="Commence à taper…"></div>
+    <div class="field"><label>Couleur</label><input placeholder="Bleu alpin"></div>
+    <div class="field"><label>Stockage</label><select><option>128 Go</option><option>256 Go</option><option>512 Go</option></select></div>
+    <div class="field"><label>État</label>
+      <div class="seg"><button class="on">Occasion</button><button>Neuf</button></div>
+      <p class="hint">Le neuf saute l'étape de test et passe en garantie 12 mois.</p></div>
+    <div class="btn-row"><button class="btn btn-p" onclick="acqStep=2;renderAcq()">Continuer</button></div>`;
+  }
+  if(acqStep===2){
+    const C=[["ecran","Écran sans rayure ni tache"],["tactile","Tactile et 3D Touch"],["faceid","Face ID / capteur"],["cam","Caméras avant et arrière"],["charge","Charge et port USB"],["son","Haut-parleur et micro"]];
+    h=`<div class="pad"><h1>État et tests</h1><p class="sub">Étape 2 sur 3 — ce que tu coches ici devient le certificat remis au client.</p></div>
+    <div class="field"><label>Santé de la batterie</label><input value="89" inputmode="numeric"><p class="hint">Sous 80 %, l'appareil passe automatiquement en grade C.</p></div>
+    <div class="field"><label>Grade</label><div class="seg"><button class="on">A — comme neuf</button><button>B — traces d'usage</button><button>C — marqué</button></div></div>
+    <div class="pad"><h2>Contrôle en 6 points</h2></div>
+    <div class="list">${C.map(c=>`<div class="check ${acqData.checks[c[0]]?'ok':''}" onclick="acqData.checks['${c[0]}']=acqData.checks['${c[0]}']?0:1;renderAcq()"><div class="box"></div>${c[1]}</div>`).join("")}</div>
+    <div class="pad"><h2>Blocages</h2></div>
+    <div class="list">
+      <div class="check ok"><div class="box"></div>iCloud / compte Google retiré<small>obligatoire</small></div>
+      <div class="check ok"><div class="box"></div>Pas de blocage opérateur<small>obligatoire</small></div>
+      <div class="check ok"><div class="box"></div>Pas de profil MDM<small>obligatoire</small></div>
+    </div>
+    <div class="pad"><h2>Photos d'état</h2><p class="sub" style="margin-bottom:10px">Quatre photos minimum, c'est ta preuve en cas de litige.</p></div>
+    <div class="photos">
+      ${["Face","Dos","Écran allumé","IMEI"].map((p,i)=>`<div class="photo ${acqData.photos[i]?'filled':''}" onclick="acqData.photos[${i}]=1;renderAcq()">${acqData.photos[i]?'✓ '+p:p}</div>`).join("")}
+    </div>
+    <div class="btn-row"><button class="btn btn-s" onclick="acqStep=1;renderAcq()">Retour</button><button class="btn btn-p" onclick="acqStep=3;renderAcq()">Continuer</button></div>`;
+  }
+  if(acqStep===3){
+    const part=acqData.src==='particulier';
+    h=`<div class="pad"><h1>D'où vient l'appareil ?</h1><p class="sub">Étape 3 sur 3 — provenance et prix</p></div>
+    <div class="field"><div class="seg">
+      <button class="${part?'on':''}" onclick="acqData.src='particulier';renderAcq()">Reprise particulier</button>
+      <button class="${part?'':'on'}" onclick="acqData.src='fournisseur';renderAcq()">Fournisseur</button>
+    </div></div>`;
+    if(part){
+      h+=`<div class="field"><label>Nom et prénom du vendeur</label><input placeholder="Mehdi Chaouch"></div>
+      <div class="field"><label>Téléphone</label><input inputmode="tel" placeholder="20 000 000"></div>
+      <div class="field"><label>Pièce d’identité</label>
+        <div class="seg"><button class="on">CIN</button><button>Passeport</button></div></div>
+      <div class="field"><label>Numéro</label><input class="mono" inputmode="numeric" placeholder="09876543">
+        <p class="hint">Le numéro suffit. Aucune photo de la pièce n’est conservée.</p></div>
+      <div class="pad"><h2>Signature du vendeur</h2><p class="sub" style="margin-bottom:10px">Vaut attestation de cession. Le PDF part sur son numéro.</p></div>
+      <div class="sig ${acqData.sig?'done':''}" onclick="acqData.sig=true;renderAcq()">${acqData.sig?'Signé — Mehdi Chaouch':'Faire signer ici'}</div>`;
+    } else {
+      h+=`<div class="field"><label>Fournisseur</label><select><option>Import Plus</option><option>Sfax Tech</option><option>+ Nouveau fournisseur</option></select></div>
+      <div class="field"><label>N° de facture</label><input placeholder="FA-2026-0418"></div>`;
+    }
+    h+=`<div class="field" style="margin-top:14px"><label>Prix d'achat</label><input inputmode="decimal" placeholder="1750,000"></div>
+    <div class="field"><label>Prix de vente conseillé</label><input inputmode="decimal" placeholder="2290,000"><p class="hint">Basé sur tes 4 dernières ventes de ce modèle en grade A : 2.190 à 2.390 DT.</p></div>
+    <div class="field"><label>Garantie à la revente</label><div class="seg"><button>3 mois</button><button class="on">6 mois</button></div></div>
+    <div class="field"><label>Boutique</label><select><option>L'Aouina</option><option>Ennasser</option></select></div>
+    ${role==='vendeur'?`<div class="alert warn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg><div><b>Validation requise</b>L'entrée partira au responsable stock avant d'apparaître en vente.</div></div>`:''}
+    <div class="btn-row"><button class="btn btn-s" onclick="acqStep=2;renderAcq()">Retour</button><button class="btn btn-p" onclick="finishAcq()">Enregistrer l'entrée</button></div>`;
+  }
+  $('acqBody').innerHTML=h;
+}
+function finishAcq(){go('stock');toast(role==='vendeur'?"Entrée envoyée pour validation":"Appareil ajouté au stock");}
+
+/* ---------------- vente ---------------- */
+function startSale(){closeSheet();saleStep=1;go('sale');}
+function renderSale(){
+  [1,2].forEach(i=>$('vst'+i).classList.toggle('on',i<=saleStep));
+  const d=DEV.find(x=>x.id===(saleDev||1));
+  let h="";
+  if(saleStep===1){
+    h=`<div class="pad"><h1>Vendre</h1><p class="sub">Étape 1 sur 2 — appareil et client</p></div>
+    <div class="card" style="margin-top:4px"><div class="card-h">Appareil<button class="chip" onclick="go('stock')">Changer</button></div>
+      <dl class="kv"><dt>${d.m} ${d.cap}</dt><dd>${dt(d.vente)}</dd></dl>
+      <dl class="kv"><dt>IMEI</dt><dd class="mono">${d.imei}</dd></dl>
+      <dl class="kv"><dt>Grade / batterie</dt><dd>${d.grade} · ${d.batt} %</dd></dl>
+    </div>
+    <div class="field" style="margin-top:14px"><label>Téléphone du client</label><input inputmode="tel" value="22 419 038"><p class="hint">Le numéro sert de fiche client : historique, garantie, relances.</p></div>
+    <div class="field"><label>Nom</label><input value="Karim Trabelsi"></div>
+    <div class="pad"><h2>Reprise en échange</h2></div>
+    <div class="list">
+      <div class="check" onclick="this.classList.toggle('ok')"><div class="box"></div>Le client donne un appareil en échange</div>
+    </div>
+    <p class="note">Si tu coches, l'app ouvre une fiche d'entrée liée à cette vente : CIN, tests et photos obligatoires, et la soulte se calcule toute seule.</p>
+    <div class="btn-row"><button class="btn btn-p" onclick="saleStep=2;renderSale()">Continuer</button></div>`;
+  } else {
+    h=`<div class="pad"><h1>Paiement et garantie</h1><p class="sub">Étape 2 sur 2</p></div>
+    <div class="field"><label>Durée de garantie</label><div class="seg"><button>3 mois</button><button class="on">6 mois</button></div>
+      <p class="hint">Départ le jour de la vente. Fin le 3 mars 2027.</p></div>
+    <div class="field"><label>Prix de vente</label><input inputmode="decimal" value="2290,000"></div>
+    <div class="field"><label>Remise</label><input inputmode="decimal" placeholder="0,000">
+      ${R().margin?`<p class="hint">Marge actuelle : ${dt(d.vente-d.achat-d.repa)}. Une remise au-delà de 200 DT demande ta validation.</p>`:''}</div>
+    <div class="field"><label>Moyen de paiement</label><div class="seg"><button class="on">Espèces</button><button>D17</button><button>Carte</button></div></div>
+    <div class="card"><div class="card-h">Ce que le client reçoit</div>
+      <dl class="kv"><dt>Bon de garantie PDF</dt><dd>QR + IMEI</dd></dl>
+      <dl class="kv"><dt>Certificat de test</dt><dd>12 points vérifiés</dd></dl>
+      <dl class="kv"><dt>Envoi</dt><dd>WhatsApp au 22 419 038</dd></dl>
+    </div>
+    <div class="btn-row"><button class="btn btn-s" onclick="saleStep=1;renderSale()">Retour</button><button class="btn btn-p" onclick="go('home');toast('Vente enregistrée — bon envoyé')">Encaisser</button></div>`;
+  }
+  $('saleBody').innerHTML=h;
+}
+
+/* ---------------- garantie ---------------- */
+function renderWarranty(){
+  const q=($('warSearch').value||"").trim();
+  let h="";
+  if(!q){
+    h=`<div class="pad"><h2>Sous garantie en ce moment</h2></div><div class="list">${DEV.filter(d=>d.wleft).map(rowHTML).join("")}</div>
+    <div class="pad"><h2>Expire bientôt</h2></div>
+    <div class="alert warn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><div><b>iPhone 12 Pro — Rami Ben Aissa</b>Il reste 65 jours. Relance WhatsApp possible pour proposer une extension.</div></div>`;
+  } else {
+    const d=DEV.find(x=>x.imei.includes(q));
+    if(!d) h=`<div style="padding:40px 24px;text-align:center;color:var(--ink-3);font-size:14px">Aucun appareil avec cet IMEI.<br>Vérifie les 15 chiffres ou cherche par nom du client.</div>`;
+    else if(!d.wleft) h=`<div class="alert bad" style="margin-top:14px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 8v5M12 17h.01"/><circle cx="12" cy="12" r="9"/></svg><div><b>${d.m} — pas encore vendu</b>Cet appareil est ${ST[d.st].l.toLowerCase()} à ${d.pdv}.</div></div>
+      <div class="list">${rowHTML(d)}</div>`;
+    else{
+      const pct=d.wleft/d.wtot, circ=2*Math.PI*32;
+      h=`<div class="card" style="margin-top:14px"><div class="card-h">Couverture</div>
+      <div class="warr"><div class="ring"><svg width="74" height="74"><circle cx="37" cy="37" r="32" stroke="#E7EBEF" stroke-width="7" fill="none"/><circle cx="37" cy="37" r="32" stroke="#0F5E5C" stroke-width="7" fill="none" stroke-linecap="round" stroke-dasharray="${circ}" stroke-dashoffset="${circ*(1-pct)}"/></svg><div class="ring-c"><b>${d.wleft}</b><span>jours</span></div></div>
+      <div class="warr-t"><b>${d.m} ${d.cap}</b><span>${d.client} · ${d.tel}<br>Vendu le ${d.dsale} · garantie ${d.war} mois</span></div></div>
+      <div style="padding:0 14px 14px"><button class="btn btn-p" onclick="toast('Retour SAV ouvert')">Ouvrir un retour SAV</button></div></div>`;
+    }
+  }
+  $('warBody').innerHTML=h;
+}
+
+/* ---------------- rapports ---------------- */
+function renderReports(){
+  $('repSub').textContent="Août 2026 · les deux boutiques";
+  const rows=[["iPhone 13 / 13 Pro",6,"8.940","2.610","29 %"],["iPhone 14",3,"6.870","1.980","29 %"],["Samsung série S",2,"2.590","640","25 %"],["Xiaomi / Redmi",4,"3.120","1.010","32 %"]];
+  $('repBody').innerHTML=`
+  <div class="stats"><div class="stat"><span class="v">18.400</span><span class="l">CA du mois (DT)</span></div><div class="stat"><span class="v">5.760</span><span class="l">Marge (DT)</span></div><div class="stat"><span class="v">15</span><span class="l">Appareils vendus</span></div></div>
+  <div class="card"><div class="card-h">Marge par famille</div>
+  ${rows.map(r=>`<dl class="kv"><dt>${r[0]}<div style="font-size:12px;color:var(--ink-3)">${r[1]} vendus · CA ${r[2]} DT</div></dt><dd>${r[3]} DT<div style="font-size:12px;color:var(--teal);font-weight:600">${r[4]}</div></dd></dl>`).join("")}</div>
+  <div class="card"><div class="card-h">Argent qui dort</div>
+    <dl class="kv"><dt>iPhone 13 minuit — 74 jours</dt><dd>1.520 DT</dd></dl>
+    <dl class="kv"><dt>iPhone 12 noir — 62 jours</dt><dd>1.320 DT</dd></dl>
+    <dl class="kv"><dt>Total immobilisé > 60 j</dt><dd style="color:var(--amber)">2.840 DT</dd></dl>
+  </div>
+  <div class="card"><div class="card-h">Par boutique</div>
+    <dl class="kv"><dt>L'Aouina</dt><dd>11 ventes · 3.910 DT de marge</dd></dl>
+    <dl class="kv"><dt>Ennasser</dt><dd>4 ventes · 1.850 DT de marge</dd></dl>
+  </div>
+  <div class="btn-row"><button class="btn btn-s" onclick="toast('Export Excel généré')">Exporter en Excel</button></div>`;
+}
+
+/* ---------------- reglages + permissions ---------------- */
+function renderMore(){
+  const own = role==='proprio';
+  $('shopBody').innerHTML = `
+  <div class="card" style="margin-top:4px"><div class="card-h">Ma boutique</div>
+    <div style="padding:13px 14px;display:flex;align-items:center;gap:12px">
+      ${mark(TEN,46,18)}
+      <div style="flex:1"><b style="font-size:17px;letter-spacing:-.02em">${TEN.name}</b>
+      <div style="font-size:13px;color:var(--ink-2)">${TEN.pdvs.length} point(s) de vente · ${TEN.users} utilisateur(s)</div></div>
+      <span class="pill ${TST[TEN.status].c}">${TST[TEN.status].l}</span>
+    </div>
+    <dl class="kv"><dt>Formule</dt><dd>${TEN.plan}${TEN.left?` · ${TEN.left} jours restants`:''}</dd></dl>
+    <dl class="kv"><dt>Points de vente</dt><dd>${TEN.pdvs.join(', ')}</dd></dl>
+  </div>
+  <div class="btn-row" style="margin-bottom:0"><button class="btn btn-s" onclick="go('team')">Équipe (${TEN.users})</button>
+  <button class="btn btn-s" onclick="${own?"toast('Logo et couleur modifiables ici')":"toast('Réservé au propriétaire')"}">Marque</button></div>
+  ${own?`<div class="btn-row" style="margin-top:10px"><button class="btn btn-d" onclick="toast('Abonnement : 49 DT par mois et par point de vente')">Abonnement et facturation</button></div>`:''}`;
+
+  const P=[
+    ["Voir le stock et les prix de vente",1,1,1,1],
+    ["Vendre et encaisser",1,1,1,1],
+    ["Vérifier une garantie",1,1,1,1],
+    ["Saisir une reprise",1,1,1,1],
+    ["Valider une entrée en stock",0,1,1,1],
+    ["Voir les prix d’achat",0,1,1,1],
+    ["Transférer entre boutiques",0,1,1,1],
+    ["Voir les marges et le CA",0,0,1,1],
+    ["Accorder une remise au-delà de 200 DT",0,0,1,1],
+    ["Corriger ou supprimer un mouvement",0,0,1,1],
+    ["Inviter et désactiver un utilisateur",0,0,1,1],
+    ["Changer le logo et la couleur",0,0,0,1],
+    ["Gérer l’abonnement",0,0,0,1],
+    ["Fermer la boutique",0,0,0,1]
+  ];
+  $('permBody').innerHTML=`<div class="perm">
+    <div class="perm-h">Droits par rôle<span>V · RS · G · P</span></div>
+    ${P.map(x=>`<div class="perm-r"><span>${x[0]}</span>
+      ${[1,2,3,4].map(i=>`<b class="${x[i]?'yes':'no'}">${x[i]?'✓':'·'}</b>`).join('')}</div>`).join("")}
+  </div>
+  <p class="note" style="margin-bottom:14px">V vendeur · RS responsable stock · G gérant · P propriétaire. Toute action reste horodatée avec son auteur.</p>`;
+}
+function renderPerms(){renderMore();}
+
+/* ---------------- multi-boutique ---------------- */
+const TENANTS=[
+ {id:1,name:"PStore +",short:"P+",color:"#0F5E5C",soft:"#E2F0EE",logo:"https://pstore.tn/wp-content/uploads/2025/12/pstore-logo-removebg-preview.png",plan:"Pro",status:"actif",until:"31/10/2026",pdvs:["L’Aouina","Ennasser"],users:6,dev:23,since:"12/03/2026",city:"Tunis",tel:"71 860 400"},
+ {id:2,name:"Phone House",short:"PH",color:"#2B4B8C",soft:"#E5EAF6",logo:"",plan:"Essai",status:"essai",pdvs:["Sousse centre"],users:2,dev:14,since:"28/08/2026",city:"Sousse",tel:"73 221 908",left:9},
+ {id:3,name:"Smart Mobile",short:"SM",color:"#8C3A2B",soft:"#F7E7E3",logo:"",plan:"—",status:"attente",pdvs:["Sfax Lafrane"],users:1,dev:0,since:"02/09/2026",city:"Sfax",tel:"74 410 332"},
+ {id:4,name:"Mega Tel",short:"MT",color:"#5B3A8C",soft:"#ECE6F6",logo:"",plan:"Standard",status:"suspendu",due:"impayé depuis le 14/08",pdvs:["Nabeul"],users:3,dev:8,since:"14/05/2026",city:"Nabeul",tel:"72 118 740"}
+];
+const TST={actif:{l:"Actif",c:"p-stock"},essai:{l:"Essai",c:"p-essai"},attente:{l:"Paiement en attente",c:"p-attente"},suspendu:{l:"Suspendu",c:"p-susp"}};
+const RLAB={proprio:"Propriétaire",gerant:"Gérant",stock:"Responsable stock",vendeur:"Vendeur"};
+const TEAM=[
+ {n:"Rayen Mansour",r:"proprio",pdv:"Tous les points de vente",st:"actif",last:"à l’instant"},
+ {n:"Sami Ferchichi",r:"gerant",pdv:"Tous les points de vente",st:"actif",last:"il y a 2 h"},
+ {n:"Nizar Ouali",r:"stock",pdv:"L’Aouina",st:"actif",last:"hier"},
+ {n:"Amine Belhaj",r:"vendeur",pdv:"L’Aouina",st:"actif",last:"il y a 20 min"},
+ {n:"Yosr Khelifi",r:"vendeur",pdv:"Ennasser",st:"actif",last:"il y a 3 j"},
+ {n:"Hichem Saadi",r:"vendeur",pdv:"Ennasser",st:"invite",last:"invitation envoyée"}
+];
+const OBCOL=[["#0F5E5C","#E2F0EE"],["#2B4B8C","#E5EAF6"],["#8C3A2B","#F7E7E3"],["#1F6B3A","#E3F1E8"],["#8C6A1B","#F8EFDC"],["#5B3A8C","#ECE6F6"]];
+let TEN=TENANTS[0], MODE='app', obStep=1, obLogo=false, obCol=0, obPdvs=["Boutique principale"], adFilter='all', shopId=1, pinLen=0;
+
+function mark(t,size,fs){
+  return `<div class="mark" style="width:${size}px;height:${size}px;font-size:${fs}px;background:${t.color}">${t.short}</div>`;
+}
+function initials(n){
+  const w=n.trim().split(/\s+/).filter(Boolean);
+  return ((w[0]||"B")[0]+((w[1]||"")[0]||"")).toUpperCase()||"B";
+}
+function applyBrand(){
+  document.documentElement.style.setProperty('--teal',TEN.color);
+  document.documentElement.style.setProperty('--teal-soft',TEN.soft);
+}
+function resetTenant(){TEN=TENANTS[0];applyBrand();closeSheet();MODE='app';go('home');}
+
+function renderHeader(){
+  const h=$('hdr');
+  if(MODE==='auth'){h.style.display='none';return;}
+  h.style.display='flex';
+  if(MODE==='admin'){
+    h.innerHTML=`<div class="mark" style="width:28px;height:28px;font-size:12px;background:var(--ink)">SO</div>
+      <b style="font-size:15.5px;letter-spacing:-.02em">Console éditeur</b>
+      <div class="hdr-right"><button class="chip" onclick="openSheet('demo')">Démo</button></div>`;
+    return;
+  }
+  const brand = TEN.logo
+    ? `<img class="logo" src="${TEN.logo}" alt="${TEN.name}" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'"><div class="mark" style="width:28px;height:28px;font-size:12px;background:${TEN.color};display:none">${TEN.short}</div>`
+    : `${mark(TEN,28,12)}<b style="font-size:15.5px;letter-spacing:-.02em">${TEN.name}</b>`;
+  h.innerHTML=`${brand}
+    <div class="hdr-right">
+      <button class="chip" onclick="openSheet('pdv')"><span class="dot"></span>${pdv}</button>
+      <button class="chip role" onclick="openSheet('role')">${R().name}</button>
+      <button class="chip" onclick="openSheet('demo')" aria-label="Démo">···</button>
+    </div>`;
+}
+
+/* ---------------- connexion ---------------- */
+function renderAuth(){
+  pinLen=Math.min(pinLen,4);
+  $('authBody').innerHTML=`<div class="auth">
+    <div class="auth-top">
+      <div class="mark" style="width:58px;height:58px;font-size:22px;background:var(--teal)">SO</div>
+      <h1>Stock Occasion</h1>
+      <p class="sub">Entre ton numéro, puis ton code à 4 chiffres.</p>
+    </div>
+    <div class="field" style="margin:0 0 16px"><label>Numéro de téléphone</label><input inputmode="tel" value="98 114 662"></div>
+    <div class="pinrow">${[0,1,2,3].map(i=>`<div class="pindot ${i<pinLen?'on':''}">${i<pinLen?'•':''}</div>`).join('')}</div>
+    <p class="note" style="text-align:center;padding:0">Premier appareil ? Tu recevras un code par SMS, puis le téléphone de la boutique devient un appareil de confiance.</p>
+    <div class="keys">
+      ${[1,2,3,4,5,6,7,8,9].map(k=>`<button onclick="pin(1)">${k}</button>`).join('')}
+      <button class="blank"></button><button onclick="pin(1)">0</button><button onclick="pin(-1)">⌫</button>
+    </div>
+    <div class="btn-row" style="margin:0 0 20px"><button class="btn btn-s" onclick="startOnboard()">Créer ma boutique</button></div>
+  </div>`;
+}
+function pin(d){
+  pinLen=Math.max(0,Math.min(4,pinLen+d));
+  if(pinLen===4){pinLen=0;MODE='app';go('home');toast('Connecté — Amine Belhaj, vendeur');return;}
+  renderAuth();
+}
+
+/* ---------------- creation de boutique ---------------- */
+function startOnboard(){closeSheet();obStep=1;go('onboard');}
+function renderOnboard(){
+  [1,2,3].forEach(i=>$('ob'+i).classList.toggle('on',i<=obStep));
+  const nm=(typeof window!=='undefined'&&$('obName')&&$('obName').value)||'';
+  let h='';
+  if(obStep===1){
+    const prevName=nm||'Ma boutique';
+    h=`<div class="pad"><h1>Crée ta boutique</h1><p class="sub">Étape 1 sur 3 — identité. Tu pourras tout changer plus tard.</p></div>
+    <div class="field"><label>Nom de la boutique</label><input id="obName" value="${nm}" placeholder="Phone House" oninput="renderOnboard()"></div>
+    <div class="field"><label>Ville</label><input placeholder="Sousse"></div>
+    <div class="field"><label>Téléphone de la boutique</label><input inputmode="tel" placeholder="73 000 000"></div>
+    <div class="field"><label>Logo</label>
+      <div class="upload ${obLogo?'done':''}" onclick="obLogo=!obLogo;renderOnboard()">
+        ${obLogo?'<div class="mark" style="width:40px;height:40px;font-size:15px;background:'+OBCOL[obCol][0]+'">'+initials(prevName)+'</div>':'<div class="mark" style="width:40px;height:40px;font-size:18px;background:var(--line);color:var(--ink-3)">+</div>'}
+        <div><b>${obLogo?'logo-boutique.png':'Ajouter un logo'}</b><span>${obLogo?'Touche pour retirer':'PNG ou JPG. Sans logo, on utilise tes initiales.'}</span></div>
+      </div></div>
+    <div class="field"><label>Couleur de la boutique</label>
+      <div class="swatches">${OBCOL.map((c,i)=>`<div class="sw ${obCol===i?'on':''}" style="background:${c[0]}" onclick="obCol=${i};renderOnboard()"></div>`).join('')}</div>
+      <p class="hint">Elle habille toute l’application pour ton équipe.</p></div>
+    <div class="pad"><h2>Aperçu</h2></div>
+    <div style="margin:0 14px"><div class="prev">
+      <div class="mark" style="width:34px;height:34px;font-size:14px;background:${OBCOL[obCol][0]}">${initials(prevName)}</div>
+      <b>${prevName}</b></div></div>
+    <div class="btn-row"><button class="btn btn-p" onclick="obStep=2;renderOnboard()">Continuer</button></div>`;
+  }
+  if(obStep===2){
+    h=`<div class="pad"><h1>Tes points de vente</h1><p class="sub">Étape 2 sur 3. Chaque appareil et chaque vente sera rattaché à l’un d’eux.</p></div>
+    <div class="list">${obPdvs.map((x,i)=>`<div class="urow"><div class="av">${i+1}</div><div class="ub"><b>${x}</b><span>Actif</span></div>
+      ${obPdvs.length>1?`<button class="chip" onclick="obPdvs.splice(${i},1);renderOnboard()">Retirer</button>`:''}</div>`).join('')}</div>
+    <div class="btn-row" style="margin-bottom:0"><button class="btn btn-s" onclick="obPdvs.push('Point de vente '+(obPdvs.length+1));renderOnboard()">+ Ajouter un point de vente</button></div>
+    <p class="note">Une seule boutique au départ, c’est très bien. Tu en ajoutes quand tu ouvres.</p>
+    <div class="btn-row"><button class="btn btn-s" onclick="obStep=1;renderOnboard()">Retour</button><button class="btn btn-p" onclick="obStep=3;renderOnboard()">Continuer</button></div>`;
+  }
+  if(obStep===3){
+    h=`<div class="pad"><h1>Ton équipe</h1><p class="sub">Étape 3 sur 3. Chacun se connecte avec son numéro et son propre code.</p></div>
+    <div class="field"><label>Numéro du collaborateur</label><input inputmode="tel" placeholder="20 000 000"></div>
+    <div class="field"><label>Son rôle</label><select><option>Vendeur</option><option>Responsable stock</option><option>Gérant</option></select></div>
+    <div class="field"><label>Point de vente</label><select>${obPdvs.map(x=>`<option>${x}</option>`).join('')}</select></div>
+    <div class="btn-row" style="margin-bottom:0"><button class="btn btn-s" onclick="toast('Invitation envoyée par SMS')">Envoyer l’invitation</button></div>
+    <div class="alert good" style="margin-top:14px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg><div><b>14 jours d’essai, sans carte</b>Jusqu’à 30 appareils. Ensuite tu choisis ta formule.</div></div>
+    <div class="btn-row"><button class="btn btn-s" onclick="obStep=2;renderOnboard()">Retour</button><button class="btn btn-p" onclick="finishOnboard()">Créer ma boutique</button></div>
+    <p class="note" style="margin-bottom:18px">Tu peux commencer seul et inviter ton équipe plus tard.</p>`;
+  }
+  $('obBody').innerHTML=h;
+}
+function finishOnboard(){
+  const el=$('obName'), n=(el&&el.value.trim())||'Ma boutique';
+  TEN={id:99,name:n,short:initials(n),color:OBCOL[obCol][0],soft:OBCOL[obCol][1],logo:"",
+       plan:"Essai",status:"essai",pdvs:obPdvs.slice(),users:1,dev:0,since:"aujourd’hui",city:"—",tel:"—",left:14};
+  role='proprio';applyBrand();MODE='app';go('home');
+  toast('Boutique créée — 14 jours d’essai');
+}
+
+/* ---------------- equipe ---------------- */
+function renderTeam(){
+  $('teamBody').innerHTML=`<div class="pad"><h1>Équipe</h1><p class="sub">${TEAM.length} personnes dans ${TEN.name}. Chacune a son propre code et son propre historique.</p></div>
+  <div class="list">${TEAM.map(u=>`<div class="urow" onclick="toast('Modifier ${u.n}')">
+    <div class="av">${initials(u.n)}</div>
+    <div class="ub"><b>${u.n}</b><span>${RLAB[u.r]} · ${u.pdv}</span></div>
+    <div style="text-align:right">${u.st==='invite'?'<span class="pill p-attente">Invité</span>':'<span class="pill p-stock">Actif</span>'}
+    <div style="font-size:11.5px;color:var(--ink-3);margin-top:3px">${u.last}</div></div></div>`).join('')}</div>
+  <div class="btn-row"><button class="btn btn-p" onclick="toast('Invitation envoyée par SMS')">Inviter quelqu’un</button></div>
+  <p class="note" style="margin-bottom:18px">Un vendeur qui part : tu le désactives, son historique de ventes reste intact et rattaché à son nom.</p>`;
+}
+
+/* ---------------- console editeur ---------------- */
+function renderAdmin(){
+  const F=[["all","Toutes"],["attente","En attente"],["essai","Essai"],["actif","Actives"],["suspendu","Suspendues"]];
+  const L=TENANTS.filter(t=>adFilter==='all'||t.status===adFilter);
+  const att=TENANTS.filter(t=>t.status==='attente').length;
+  $('adminBody').innerHTML=`<div class="pad"><h1>Boutiques</h1><p class="sub">Toutes les boutiques qui utilisent l’application.</p></div>
+  <div class="stats"><div class="stat"><span class="v">${TENANTS.length}</span><span class="l">Boutiques</span></div>
+  <div class="stat"><span class="v">${TENANTS.reduce((a,b)=>a+b.dev,0)}</span><span class="l">Appareils suivis</span></div>
+  <div class="stat"><span class="v">147</span><span class="l">Revenu mensuel (DT)</span></div></div>
+  ${renderDues()}
+  ${att?`<div class="alert warn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg><div><b>${att} inscription en attente de validation</b>Elle tourne en essai, mais ne pourra pas passer en payant sans ton feu vert.</div></div>`:''}
+  <div class="filters">${F.map(f=>`<button class="f ${adFilter===f[0]?'on':''}" onclick="adFilter='${f[0]}';renderAdmin()">${f[1]}</button>`).join('')}</div>
+  <div class="list">${L.length?L.map(t=>`<div class="srow" onclick="openShop(${t.id})">
+    ${mark(t,42,15)}
+    <div class="sb"><b>${t.name}</b><span>${t.city} · ${t.pdvs.length} PDV · ${t.users} utilisateur(s) · ${t.dev} appareils</span></div>
+    <span class="pill ${TST[t.status].c}">${TST[t.status].l}</span></div>`).join(''):'<div style="padding:34px;text-align:center;color:var(--ink-3);font-size:14px">Aucune boutique dans ce filtre.</div>'}</div>
+  <p class="note" style="margin-bottom:18px">Les données de chaque boutique sont cloisonnées. Depuis ici tu vois l’usage, jamais le contenu du stock.</p>`;
+}
+function openShop(id){
+  shopId=id;const t=TENANTS.find(x=>x.id===id);
+  $('shopDetail').innerHTML=`<div class="dhead">
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px">${mark(t,46,17)}<div><h1 style="margin:0">${t.name}</h1>
+    <div style="font-size:13px;color:var(--ink-2)">${t.city} · inscrit le ${t.since}</div></div></div>
+    <span class="pill ${TST[t.status].c}">${TST[t.status].l}</span><span class="pill p-vendu">${t.plan}</span>
+    ${t.left?`<span class="pill p-essai">${t.left} jours d’essai restants</span>`:''}
+  </div>
+  <div class="card"><div class="card-h">Usage</div>
+    <dl class="kv"><dt>Points de vente</dt><dd>${t.pdvs.join(', ')}</dd></dl>
+    <dl class="kv"><dt>Utilisateurs</dt><dd>${t.users}</dd></dl>
+    <dl class="kv"><dt>Appareils enregistrés</dt><dd>${t.dev}</dd></dl>
+    <dl class="kv"><dt>Téléphone</dt><dd>${t.tel}</dd></dl>
+  </div>
+  <div class="card"><div class="card-h">Facturation</div>
+    <dl class="kv"><dt>Formule</dt><dd>${t.plan}</dd></dl>
+    <dl class="kv"><dt>Montant mensuel</dt><dd>${t.status==='actif'?dt(49*t.pdvs.length):'—'}</dd></dl>
+  </div>
+  ${t.status==='attente'?`<div class="btn-row"><button class="btn btn-s" onclick="toast('Inscription refusée')">Refuser</button><button class="btn btn-p" onclick="openSheet('pay')">Encaisser et activer</button></div>`
+  :t.status==='suspendu'?`<div class="btn-row"><button class="btn btn-s" onclick="toast('Relance envoyée')">Relancer</button><button class="btn btn-p" onclick="openSheet('pay')">Encaisser et réactiver</button></div>`
+  :`<div class="btn-row"><button class="btn btn-s" onclick="toast('Boutique suspendue')">Suspendre</button><button class="btn btn-p" onclick="openSheet('pay')">Enregistrer un paiement</button></div>
+    <div class="btn-row" style="margin-top:0"><button class="btn btn-d" onclick="toast('Session support ouverte — action tracée')">Assistance</button></div>`}
+  <p class="note" style="margin-bottom:18px">L’assistance ouvre une session en lecture seule, visible dans le journal de la boutique. Le propriétaire reçoit une notification.</p>`;
+  MODE='admin';cur='shop';
+  document.querySelectorAll('.screen').forEach(e=>e.classList.remove('on'));
+  $('s-shop').classList.add('on');$('main').scrollTop=0;$('fab').style.display='none';
+  renderHeader();renderNav();
+}
+
+/* ---------------- encaissement ---------------- */
+const MOIS=["1 mois","3 mois","12 mois (-15 %)"];
+let payMonths=1, payMode=0;
+function renderDues(){
+  const d=TENANTS.filter(t=>t.status==='suspendu'||t.status==='attente'||(t.left&&t.left<10));
+  if(!d.length)return '';
+  return `<div class="card" style="margin-top:12px"><div class="card-h">À encaisser</div>
+  ${d.map(t=>`<div class="srow" onclick="openShop(${t.id})">${mark(t,36,13)}
+    <div class="sb"><b>${t.name}</b><span>${t.due||(t.status==='attente'?'Inscrite le '+t.since+', jamais encaissée':'Essai terminé dans '+t.left+' jours')}</span></div>
+    <span class="price">${dtn(49*t.pdvs.length)} DT</span></div>`).join('')}</div>`;
+}
+function payTotal(t){
+  const base=49*t.pdvs.length;
+  return payMonths===12 ? base*12*0.85 : base*payMonths;
+}
+function openPaySheet(){
+  const t=TENANTS.find(x=>x.id===shopId);
+  return `<h3>Enregistrer un paiement</h3>
+  <p class="note" style="margin:-4px 0 12px">${t.name} · ${t.pdvs.length} point(s) de vente · 49 DT par point de vente et par mois</p>
+  <div class="field"><label>Période réglée</label>
+    <div class="seg">${[1,3,12].map(m=>`<button class="${payMonths===m?'on':''}" onclick="payMonths=${m};refreshPay()">${m} mois</button>`).join('')}</div>
+    ${payMonths===12?'<p class="hint">Remise annuelle de 15 % appliquée.</p>':''}</div>
+  <div class="field"><label>Montant reçu</label><input class="mono" value="${dtn(payTotal(t))}"></div>
+  <div class="field"><label>Mode de règlement</label>
+    <div class="seg">${["Virement","D17","Espèces"].map((m,i)=>`<button class="${payMode===i?'on':''}" onclick="payMode=${i};refreshPay()">${m}</button>`).join('')}</div></div>
+  <div class="field"><label>Référence</label><input placeholder="VIR-2026-0912"></div>
+  <div class="btn-row" style="margin-bottom:6px"><button class="btn btn-s" onclick="closeSheet()">Annuler</button>
+  <button class="btn btn-p" onclick="confirmPay()">Valider et activer</button></div>
+  <p class="note" style="margin-bottom:10px">L’activation est immédiate pour la boutique. Un reçu part sur le numéro du propriétaire.</p>`;
+}
+function refreshPay(){$('sheet').innerHTML=openPaySheet();}
+function confirmPay(){
+  const t=TENANTS.find(x=>x.id===shopId);
+  t.status='actif';t.plan=payMonths===12?'Pro annuel':'Standard';
+  t.until=payMonths===12?'07/10/2027':(payMonths===3?'07/01/2027':'07/11/2026');
+  delete t.left;delete t.due;
+  closeSheet();openShop(shopId);
+  toast(t.name+' activée jusqu’au '+t.until);
+}
+
+applyBrand();
+go('home');
+</script>
+</body>
+</html>
