@@ -22,7 +22,7 @@ if (isFirstRun) {
   ).run(editorPhone, hashPin(editorPin));
   console.log(`Éditeur créé : numéro=${editorPhone}  code=${editorPin}`);
   if (editorPin === '1234') {
-    console.warn('⚠  EDITOR_PIN est la valeur par défaut — changez-la en variable d'environnement !');
+    console.warn("EDITOR_PIN par defaut - changez-la en variable env");
   }
 }
 
