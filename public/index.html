@@ -12,6 +12,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html5-qrcode/2.3.8/html5-qrcode.min.js"></script>
 <style>
 :root{
   --ink:#131C26;--ink-2:#4A5765;--ink-3:#8592A0;
@@ -556,7 +557,9 @@ async function loadMe(){
       document.documentElement.style.setProperty('--teal-soft', ME.tenant.soft_color||'#E2F0EE');
     }
   } catch(e){
+    // Token invalide ou expiré — on efface et on retourne à l'auth
     TOKEN=''; localStorage.removeItem('so_token'); ME=null;
+    pdvId=''; pdvName='';
   }
 }
 
@@ -614,7 +617,10 @@ async function renderHome(){
     $('homeList').innerHTML = recent.length ? recent.map(rowHTML).join('') : '<div class="empty">Aucun appareil en stock.</div>';
 
   } catch(e){
-    $('homeStats').innerHTML=`<div class="stat"><span class="v" style="font-size:13px;color:var(--clay)">Erreur</span><span class="l">${e.message}</span></div>`;
+    const msg = e.message||'';
+    const isAuth = msg.includes('401')||msg.includes('token')||msg.includes('auth')||msg.toLowerCase().includes('pattern');
+    if(isAuth){ logout(); return; }
+    $('homeStats').innerHTML=`<div class="stat"><span class="v" style="font-size:13px;color:var(--clay)">!</span><span class="l">${msg||'Erreur réseau'}</span></div>`;
   }
 }
 
@@ -1244,8 +1250,9 @@ function openSheet(k){
   }
   if(k==='scan'){
     h=`<h3>Scanner l'IMEI</h3>
-    <div class="scanview"><div class="box2"><div class="laser"></div></div><p>Vise le code-barres ou tape *#06# sur l'appareil</p></div>
-    <div class="btn-row" style="margin-top:0"><button class="btn btn-s" onclick="closeSheet()">Annuler</button><button class="btn btn-p" onclick="closeSheet();toast('Scan non disponible sur navigateur — saisie manuelle')">OK</button></div>`;
+    <div id="qr-reader" style="width:100%;border-radius:12px;overflow:hidden;background:#111;"></div>
+    <p class="note" style="text-align:center;margin:10px 0 4px">Vise le code-barres IMEI ou le QR code</p>
+    <div class="btn-row" style="margin-top:8px"><button class="btn btn-s" onclick="stopScan()">Annuler</button></div>`;
   }
   if(k==='invite'){
     h=`<h3>Inviter un collaborateur</h3>
@@ -1256,6 +1263,32 @@ function openSheet(k){
   if(k==='pay'){ h=openPaySheet(); }
   $('sheet').innerHTML=h;
   $('sheetBg').classList.add('on');
+  // Démarrer le vrai scanner après rendu du DOM
+  if(k==='scan'){
+    setTimeout(()=>{
+      if(typeof Html5Qrcode === 'undefined'){ toast('Scanner non disponible — saisie manuelle',true); closeSheet(); return; }
+      qrScanner = new Html5Qrcode('qr-reader');
+      qrScanner.start(
+        {facingMode:'environment'},
+        {fps:10, qrbox:{width:250,height:80}, aspectRatio:1.5},
+        (text)=>{
+          // Succès — extraire les chiffres (IMEI = 15 chiffres)
+          const digits = text.replace(/\D/g,'');
+          if(digits.length>=14){
+            stopScan();
+            // Injecter dans le champ IMEI actif
+            if($('acqImei')){ $('acqImei').value=digits; acqData.imei=digits; }
+            else if($('heroSearch')){ $('heroSearch').value=digits; heroSearchFn(digits); }
+            toast('IMEI lu : '+digits.slice(0,15));
+          }
+        },
+        ()=>{} // erreur de frame ignorée
+      ).catch(err=>{
+        stopScan();
+        toast('Caméra inaccessible — saisie manuelle',true);
+      });
+    },200);
+  }
 }
 
 async function sendInvite(){
@@ -1268,7 +1301,17 @@ async function sendInvite(){
   } catch(e){ toast(e.message,true); }
 }
 
-function closeSheet(){ $('sheetBg').classList.remove('on'); }
+let qrScanner = null;
+
+function stopScan(){
+  if(qrScanner){ qrScanner.stop().catch(()=>{}); qrScanner=null; }
+  closeSheet();
+}
+
+function closeSheet(){
+  if(qrScanner){ qrScanner.stop().catch(()=>{}); qrScanner=null; }
+  $('sheetBg').classList.remove('on');
+}
 
 /* ========================================================
    INIT
