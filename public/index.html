@@ -545,21 +545,28 @@ async function doLogin(){
 
 async function loadMe(){
   try {
-    ME = await api.get('/api/me');
+    const raw = await api.get('/api/me');
+    // /api/me peut retourner {user:{...}, pdvs:[...], tenant:{...}} ou directement les champs
+    ME = raw.user ? Object.assign({}, raw.user, {pdvs: raw.pdvs||[], tenant: raw.tenant||null}) : raw;
+    ME.pdvs = ME.pdvs || [];
     // Set default PDV
-    if(ME.pdvs && ME.pdvs.length>0 && !pdvId){
+    if(ME.pdvs.length>0 && !pdvId){
       pdvId = ME.pdvs[0].id;
       pdvName = ME.pdvs[0].name;
     }
     // Apply brand color
-    if(ME.tenant?.color){
-      document.documentElement.style.setProperty('--teal', ME.tenant.color);
-      document.documentElement.style.setProperty('--teal-soft', ME.tenant.soft_color||'#E2F0EE');
+    const col = ME.tenant?.color || (raw.tenant?.color);
+    if(col){
+      document.documentElement.style.setProperty('--teal', col);
+      document.documentElement.style.setProperty('--teal-soft', ME.tenant?.soft_color||'#E2F0EE');
     }
   } catch(e){
-    // Token invalide ou expiré — on efface et on retourne à l'auth
-    TOKEN=''; localStorage.removeItem('so_token'); ME=null;
-    pdvId=''; pdvName='';
+    console.error('loadMe error:', e);
+    // Seulement effacer si c'est vraiment une erreur auth (401/403), pas réseau
+    if(e.message && (e.message.includes('401')||e.message.includes('403')||e.message.includes('Unauthorized')||e.message.includes('token'))){
+      TOKEN=''; localStorage.removeItem('so_token'); ME=null;
+      pdvId=''; pdvName='';
+    }
   }
 }
 
@@ -1319,10 +1326,23 @@ function closeSheet(){
 async function init(){
   if(TOKEN){
     await loadMe();
-    if(ME){
+    if(ME && ME.role){
       const firstTab = R().tabs[0];
       go(firstTab);
       return;
+    }
+    // loadMe a échoué mais le token existe — on tente quand même
+    if(TOKEN){
+      // Forcer un ME minimal pour débloquer la navigation
+      try {
+        const raw = await fetch('/api/me',{headers:{'Authorization':'Bearer '+TOKEN}});
+        if(raw.ok){
+          const data = await raw.json();
+          ME = data.user ? Object.assign({},data.user,{pdvs:data.pdvs||[],tenant:data.tenant||null}) : data;
+          ME.pdvs = ME.pdvs||[];
+          if(ME.role){ go(R().tabs[0]); return; }
+        }
+      } catch(_){}
     }
   }
   go('auth');
