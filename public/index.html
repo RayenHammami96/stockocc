@@ -382,7 +382,7 @@ let acqData = {imei:'',brand:'',model:'',color:'',storage:'128 Go',grade:'A',bat
                supplier_name:'',invoice_ref:'',buy_price:'',sell_price:'',warranty_months:3,pdv_id:''};
 let saleData = {client_name:'',client_phone:'',warranty_months:3,price:'',discount:0,payment:'especes'};
 let pinBuffer = '', phoneValue = '';
-let obStep=1,obCol=0,obPdvs=['Boutique principale'],obName='';
+let obStep=1,obCol=0,obPdvs=['Boutique principale'],obName='',obCity='',obPhone='';
 let adFilter='all', shopId=null;
 let payMonths=1,payMode=0;
 let pdvId = '', pdvName = '';
@@ -1186,11 +1186,11 @@ function renderOnboard(){
     const OBCOL=[["#0F5E5C","#E2F0EE"],["#2B4B8C","#E5EAF6"],["#8C3A2B","#F7E7E3"],["#1F6B3A","#E3F1E8"],["#8C6A1B","#F8EFDC"],["#5B3A8C","#ECE6F6"]];
     h=`<div class="pad"><h1>Crée ta boutique</h1><p class="sub">Étape 1 sur 3</p></div>
     <div class="field"><label>Nom</label><input id="obNameI" value="${obName}" placeholder="Phone House" oninput="obName=this.value"></div>
-    <div class="field"><label>Ville</label><input id="obCity" placeholder="Sousse"></div>
-    <div class="field"><label>Téléphone de la boutique</label><input id="obPhone" inputmode="tel" placeholder="73 000 000"></div>
+    <div class="field"><label>Ville</label><input id="obCityI" value="${obCity}" placeholder="Sousse" oninput="obCity=this.value"></div>
+    <div class="field"><label>Téléphone de la boutique</label><input id="obPhoneI" inputmode="tel" value="${obPhone}" placeholder="73 000 000" oninput="obPhone=this.value"></div>
     <div class="field"><label>Couleur</label>
       <div style="display:flex;gap:9px;flex-wrap:wrap">${OBCOL.map((c,i)=>`<div style="width:42px;height:42px;border-radius:11px;cursor:pointer;border:3px solid ${obCol===i?'#131C26':'transparent'};background:${c[0]}" onclick="obCol=${i};renderOnboard()"></div>`).join('')}</div></div>
-    <div class="btn-row"><button class="btn btn-p" onclick="if(!obName){toast('Nom requis',true);}else{obStep=2;renderOnboard();}">Continuer</button></div>`;
+    <div class="btn-row"><button class="btn btn-p" onclick="obCity=($('obCityI')||{}).value||obCity;obPhone=($('obPhoneI')||{}).value||obPhone;if(!obName){toast('Nom requis',true);}else{obStep=2;renderOnboard();}">Continuer</button></div>`;
   }
   if(obStep===2){
     h=`<div class="pad"><h1>Points de vente</h1><p class="sub">Étape 2 sur 3</p></div>
@@ -1215,13 +1215,11 @@ async function finishOnboard(){
   try {
     const phone=($('obOwnerPhone')||{}).value||'';
     const pin=($('obOwnerPin')||{}).value||'';
-    const city=($('obCity')||{}).value||'';
-    const shopPhone=($('obPhone')||{}).value||'';
     if(!phone||!pin){ toast('Numéro et code requis',true); if(btn) btn.disabled=false; return; }
     const data = await api.post('/api/signup',{
       name: obName,
-      city,
-      phone: shopPhone,
+      city: obCity,
+      phone: obPhone.replace(/\s/g,''),
       color: OBCOL[obCol][0],
       soft_color: OBCOL[obCol][1],
       pdvs: obPdvs,
